@@ -161,3 +161,39 @@
   background-color: #ccc;
   cursor: not-allowed;
 }
+/* Modal arka planı ve konumlandırması */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7); /* Arka planı karartır */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-actions {
+  display: grid;
+  grid-template-columns: repeat(1, auto); /* İki buton için iki sütun oluşturur */
+  gap: 5px; /* Butonlar arasındaki boşluğu ayarlar, isteğe bağlı */
+}
+
+.modal-actions button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modal-actions button:first-child {
+  background-color: #ccc;
+  color: #000;
+}
+
+.modal-actions button:last-child {
+  background-color: #ff4655;
+  color: #fff;
+}

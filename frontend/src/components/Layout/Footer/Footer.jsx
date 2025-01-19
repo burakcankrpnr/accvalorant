@@ -3,7 +3,6 @@ import "./Footer.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
 
 const policyData = {
   privacy: {
@@ -203,13 +202,13 @@ const Footer = () => {
       <div className="widgets-row">
         <div className="container footer-widgets">
           <div className="brand-info">
-            <h3>AccValorant</h3>
-            <p className="footer-desc">
-              AccValorant provides gaming accounts and products. This website
+          <img src="/sds-Photoroom.png" alt="AccValorant Logo" className="logo" />
+          <p className="footer-desc">
+              AccValo.Shop, provides gaming accounts and products. This website
               is not affiliated with Riot Games or Valorant.
             </p>
             <p className="footer-contact">
-              <strong>Email:</strong> contact@accvalorant.com
+              <strong>Email:</strong> contact@accvalorantshop.com
             </p>
           </div>
           <div className="widget-nav-menu">
@@ -250,17 +249,12 @@ const Footer = () => {
             <h4>Follow Us</h4>
             <div className="social-links">
               <a href="#" className="social-icon">
-                <FacebookIcon />
-              </a>
-              <a href="#" className="social-icon">
                 <TwitterIcon />
               </a>
               <a href="#" className="social-icon">
                 <InstagramIcon />
               </a>
-              <a href="#" className="social-icon">
-                <LinkedInIcon />
-              </a>
+              
             </div>
           </div>
         </div>
@@ -272,7 +266,7 @@ const Footer = () => {
           <div className="footer-copyright">
             <div className="site-copyright">
               <p>
-                © 2025 AccValorant.com, This website is not affiliated with Riot
+                © 2025 accvalo.shop, This website is not affiliated with Riot
                 Games or Valorant.
               </p>
             </div>

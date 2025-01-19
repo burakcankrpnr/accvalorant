@@ -70,7 +70,7 @@ const Products = () => {
               No products available for the {selectedRegion || "All"} region.
             </p>
           )}
-        </div>
+        </div>  
       </div>
     </section>
   );

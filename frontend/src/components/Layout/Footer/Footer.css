@@ -235,7 +235,7 @@
   font-size: 1.4rem; 
   margin-bottom: 1rem;
   font-weight: 700;
-  color: #333;
+  color: #FF4655;
 }
 
 /* Kapsayıcı .modal-text: 
@@ -245,7 +245,7 @@
 .modal-text {
   font-size: 0.95rem;
   line-height: 1.4;
-  color: #333;
+  color: #ffffff;
   max-height: 60vh;
   overflow-y: auto;
   white-space: pre-wrap; /* Policy metnindeki satır boşluklarını korumak için */

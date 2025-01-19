@@ -60,9 +60,9 @@ const Header = () => {
       <header className="valorant-header" onMouseMove={handleMouseMove}>
         {/* Navbar */}
         <nav className="valorant-navbar">
-          <div className="navbar-left">
-            <h1 className="site-title">AccValorant</h1>
-          </div>
+        <div className="navbar-left">
+  <img src="/sds-Photoroom.png" alt="AccValorant Logo" className="logo" />
+</div>
 
           <div className="navbar-right">
             {/* Kullanıcı GİRİŞ YAPMIŞSA */}
@@ -153,7 +153,11 @@ const Header = () => {
                 transition: "transform 0.1s ease-out",
               }}
             >
-              <img src="/qwe-removebg-preview.png" alt="Valorant Character" />
+<img 
+  src="/character_valo2.png" 
+  alt="Valorant Character"  
+  className="hero-image2" 
+/>
             </div>
           </div>
         </div>

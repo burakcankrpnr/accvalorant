@@ -78,7 +78,7 @@
   position: relative;
   color: #fff;
   background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
-  background-image: url("../../../../background.jpg");
+  background-image: url("../../../../sd.jpg");
   background-size: cover;
   background-position: center;
   clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
@@ -131,7 +131,7 @@
   text-decoration: none;
   font-weight: 600;
   border-radius: 50px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s;  
 }
 
 .hero-btn:hover {
@@ -453,3 +453,51 @@
     font-size: 10px;
   }
 }
+/* Temel logo stili */
+.logo {
+  width: 300px;      /* Normal ekran boyutunda genişlik */
+  height: auto;      /* Yüksekliği orantılı ayarla */
+  transition: width 0.3s ease; /* Boyut değişiminde yumuşak geçiş */
+}
+
+/* Daha küçük ekranlar için medya sorgusu */
+@media (max-width: 600px) {
+  .logo {
+    width: 100px;    /* Mobilde logoyu küçült */
+  }
+}
+.hero-image2 {
+  width: 200px; /* Genişliği büyütmek için px, %, em vb. birimlerle ayarlayabilirsiniz */
+  height: auto; /* En-boy oranını korur */
+  transition: transform 0.3s ease; /* İsteğe bağlı: hover animasyonu için */
+  transform: scale(1.3);
+}
+
+/* Hover efektinde resmi daha da büyütmek isterseniz: */
+.hero-image2:hover {
+  transform: scale(1.1);
+}
+.modal-content {
+  position: relative; /* Pseudo-elementin konumlandırılması için gerekli */
+  padding: 20px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8); /* İçeriğin arka planı, isteğe bağlı */
+  z-index: 1; /* İçeriğin pseudo-elementin üstünde kalmasını sağlar */
+  overflow: hidden; /* Taşan kısımların gizlenmesi için */
+  color: #dcdcdc;
+}
+
+/* Pseudo-element ile blurlu arka plan */
+.modal-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('/wa.jpg') no-repeat center center;
+  background-size: cover;
+  filter: blur(3px); /* Blur miktarını isteğe göre ayarlayın */
+  z-index: -1; /* Arka planı içeriğin arkasında tutar */
+}
+

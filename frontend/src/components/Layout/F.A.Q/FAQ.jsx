@@ -3,29 +3,29 @@ import "./FAQ.css";
 
 const faqData = [
   {
-    question: "How does the buying process work?",
+    question: "What We Do ?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse a sapien in lectus commodo porta.",
+      "AccVictory offer a wide range of digital goods, focusing on game accounts. Our platform ensures a quick, hassle-free purchase with exceptional customer support. AccVictory is a secure online platform where users can buy game accounts and digital goods.",
   },
   {
-    question: "What payment methods do you accept?",
+    question: "Are The Products Original ?",
     answer:
-      "We support multiple payment options such as PayPal, credit card, and various cryptocurrencies.",
+      "All of our products are original. You can easily connect to online servers. If you have any problems you can reach our support team 24/7.",
   },
   {
-    question: "Is there any guarantee for safety and reliability?",
+    question: "How Are The Orders Delivered ?",
     answer:
-      "Yes, we take security very seriously. All transactions are encrypted, and we have a refund policy under certain conditions.",
+      "Once you register on our website and place an order, you can track the status of your order in the 'My Orders' section. When you receive your order, click 'View Order' to access the product details. Our average delivery time is between 1-2 hour.",
   },
   {
-    question: "How long does it take to receive my account details?",
+    question: "How Can I Make A Order ?",
     answer:
-      "Typically, you'll receive the details via email within a few minutes after purchase. In rare cases, it may take up to 24 hours.",
+      "You can sign up and buy our products with credit/debit cards or other similar payment methods.",
   },
   {
-    question: "How do I contact support?",    
+    question: "Is There A Product Warranty ?",    
     answer:
-      "You can reach us 24/7 via live chat, email, or by creating a ticket in our support center.",
+      "Absolutely, all our products come with a 'first login' guarantee. Each product undergoes thorough verification by our team before delivery. Should any issues arise, our support team is ready to provide comprehensive assistance.",
   },
 ];
 

@@ -241,3 +241,46 @@
     gap: 20px;
   }
 }
+.products {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ortak stil ayarları */
+.products::before,
+.products::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  opacity: 0.15;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Soldan Viper resmi için */
+.products::before {
+  background-image: url("/sa.webp"); /* Viper resmi */
+  left: -60%;
+  animation: slideFromLeft 5s linear forwards;
+}
+
+/* Sağdan Sage resmi için */
+.products::after {
+  background-image: url("/sage.webp"); /* Sage resmi */
+  right: -60%;
+  animation: slideFromRight 5s linear forwards;
+}
+
+/* Soldan 20px içeriye hareket animasyonu */
+@keyframes slideFromLeft {
+  to { left: -350px; } /* 20px mesafeye doğru hareket */
+}
+
+/* Sağdan 20px içeriye hareket animasyonu */
+@keyframes slideFromRight {
+  to { right: -350px; } /* 20px mesafeye doğru hareket */
+}
