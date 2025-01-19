@@ -72,14 +72,16 @@ const ProductItem = ({ productItem }) => {
           )}
         </div>
         <button
-          className="add-to-cart"
-          onClick={handleAddToCart}
-          disabled={productItem.stockStatus === "outOfStock"}
-        >
-          {productItem.stockStatus === "outOfStock"
-            ? "Out of Stock"
-            : "Add to Cart"}
-        </button>
+            className="add-to-cart"
+            onClick={() =>
+              addToCart({
+                ...productItem,
+                price: discountedPrice,
+              })
+            }
+          >
+            Add to Cart
+          </button>
       </div>
     </div>
   );
@@ -87,6 +89,8 @@ const ProductItem = ({ productItem }) => {
 
 ProductItem.propTypes = {
   productItem: PropTypes.object.isRequired,
+  setCartItems: PropTypes.func,
+
 };
 
 export default ProductItem;
