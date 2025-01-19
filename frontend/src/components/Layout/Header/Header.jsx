@@ -1,0 +1,217 @@
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CartContext } from "../../../context/CartProvider";
+import Loading from "../../Loading/Loading";
+import "./Header.css";
+
+const Header = () => {
+  const { cartItems } = useContext(CartContext);
+
+  // localStorage'dan user objesini çek
+  const storedUser = localStorage.getItem("user");
+  const user = storedUser ? JSON.parse(storedUser) : null;
+
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoading, setIsLoading] = useState(false); // Yükleme durumu
+  const [isLogoutModalVisible, setIsLogoutModalVisible] = useState(false); // Logout modal state
+  const navigate = useNavigate();
+
+  // Mouse hareketi
+  const handleMouseMove = (e) => {
+    const { clientX, clientY } = e;
+    setMousePosition({
+      x: (clientX / window.innerWidth) * 2 - 1,
+      y: (clientY / window.innerHeight) * 2 - 1,
+    });
+  };
+
+  // Sayfa yükleme simülasyonu
+  const simulatePageLoad = (path) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      navigate(path);
+    }, 2000); // 2 saniye yükleme
+  };
+
+  // Çıkış işlemi
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+  };
+
+  // Logout modal actions
+  const showLogoutModal = () => {
+    setIsLogoutModalVisible(true);
+  };
+
+  const closeLogoutModal = () => {
+    setIsLogoutModalVisible(false);
+  };
+
+  const confirmLogout = () => {
+    closeLogoutModal();
+    handleLogout();
+  };
+
+  return (
+    <>
+      {isLoading && <Loading />}
+      <header className="valorant-header" onMouseMove={handleMouseMove}>
+        {/* Navbar */}
+        <nav className="valorant-navbar">
+          <div className="navbar-left">
+            <h1 className="site-title">AccValorant</h1>
+          </div>
+
+          <div className="navbar-right">
+            {/* Kullanıcı GİRİŞ YAPMIŞSA */}
+            {user ? (
+              <>
+                <div className="user-info">
+                  {user.characterImage && (
+                    <img
+                      src={user.characterImage}
+                      alt="Valorant Character"
+                      className="valorant-avatar"
+                    />
+                  )}
+                  <span
+                    className="user-greeting"
+                    style={{ color: "#fff", marginLeft: "8px" }}
+                  >
+                    Hello, {user.username}!
+                  </span>
+                  <button onClick={showLogoutModal} className="logout-btn">
+                    Log Out
+                  </button>
+                </div>
+
+                {/* Eğer admin ise admin panel linki */}
+                {user.role === "admin" && (
+                  <Link to="/admin" className="nav-link">
+                    Admin
+                  </Link>
+                )}
+
+                {/* My Cart linki (giriş yapılmışsa göster) */}
+                <button
+  className="nav-link cart-button"
+  onClick={() => simulatePageLoad("/cart")}
+>
+  <span className="cart-icon-wrapper">
+    <i className="bi bi-cart-fill"></i>
+    <span className="cart-count">({cartItems.length})</span>
+  </span>
+</button>
+
+              </>
+            ) : (
+              /* Kullanıcı GİRİŞ YAPMADIYSA */
+              <>
+                <button
+                  className="nav-link"
+                  onClick={() => simulatePageLoad("/auth?mode=login")}
+                >
+                  Login
+                </button>
+                <button
+                  className="nav-link"
+                  onClick={() => simulatePageLoad("/auth?mode=register")}
+                >
+                  Register
+                </button>
+              </>
+            )}
+          </div>
+        </nav>
+
+        {/* Hero Section */}
+        <div className="valorant-hero">
+          <div className="container hero-content">
+            <div className="hero-text">
+              <h1>Buy Cheap Valorant Account with Instant Delivery</h1>
+              <p>
+                Get your Valorant account now with secure and fast delivery.
+                Trusted by thousands of gamers around the world.
+              </p>
+              {/* Eğer user varsa sepet linki "hero-btn" içinde gözükebilir */}
+              {user && (
+                <a href="/cart" className="hero-btn">
+                  Buy Now
+                </a>
+              )}  
+            </div>
+
+            {/* Hero Image: Mouse hareketiyle dinamik parallax */}
+            <div
+              className="hero-image"
+              style={{
+                transform: `translate(${mousePosition.x * 15}px, ${
+                  mousePosition.y * 15
+                }px)`,
+                transition: "transform 0.1s ease-out",
+              }}
+            >
+              <img src="/qwe-removebg-preview.png" alt="Valorant Character" />
+            </div>
+          </div>
+        </div>
+
+        {/* Logout Confirmation Modal */}
+        {isLogoutModalVisible && (
+          <div className="modal-overlay">
+            <div className="valorant-modal">
+              <h2 className="modal-title">Confirm Logout</h2>
+              <p className="modal-message">Are you sure you want to log out?</p>
+              <div className="modal-actions">
+                <button className="valorant-btn confirm-btn" onClick={confirmLogout}>
+                  Yes, Log Out
+                </button>
+                <button className="valorant-btn cancel-btn" onClick={closeLogoutModal}>
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Features Section */}
+        <div className="valorant-features container">
+          <div className="feature-box">
+            <div className="feature-icon">
+              <i className="bi bi-fire" />
+            </div>
+            <h3>Secure Delivery</h3>
+            <p>
+              Account information will be delivered to the e-mail address after
+              being manually checked.
+            </p>
+          </div>
+          <div className="feature-box">
+            <div className="feature-icon">
+              <i className="bi bi-emoji-smile" />
+            </div>
+            <h3>Trusted</h3>
+            <p>
+              We work fully secure with the largest Payment Gateway companies.
+              Your information is protected with 256bit SSL. You can pay with any card.
+            </p>
+          </div>
+          <div className="feature-box">
+            <div className="feature-icon">
+              <i className="bi bi-hand-thumbs-up" />
+            </div>
+            <h3>Warranty</h3>
+            <p>
+              All our products have a lifetime warranty. We can replace any account
+              if a problem occurs.
+            </p>
+          </div>
+        </div>
+      </header>
+    </>
+  );
+};
+
+export default Header;

@@ -1,0 +1,33 @@
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed; /* Sabit pozisyon */
+  top: 0;
+  left: 0;
+  width: 100vw; /* Tüm genişlik */
+  height: 100vh; /* Tüm yükseklik */
+  background-color: #ffffff; /* İsteğe bağlı: Arka plan rengi */
+  background: url("https://cdn.oneesports.gg/cdn-data/2023/01/Valorant_Lotus_Episode6ActI_Map-1024x576.jpg")
+    center center / cover no-repeat;
+  z-index: 9999; /* Diğer içeriklerin üstünde yer alır */
+  overflow: hidden; 
+}
+
+/* Dönen görsel */
+.loading-image {
+  width: 150px; /* Görsel boyutu */
+  height: 150px;
+  animation: spin 2s linear infinite; /* Döndürme animasyonu */
+}
+
+/* Döndürme animasyonu */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,34 @@
+/*! categories start  */
+.categories {
+  margin: 40px 0;
+}
+
+.categories .category-list {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Elemanları yatayda hizalayalım */
+}
+
+@media (max-width: 1200px) {
+  .categories .category-list {
+    gap: 20px; /* Ekran küçüldükçe boşlukları azaltabiliriz */
+  }
+}
+
+@media (max-width: 768px) {
+  .categories .category-list {
+    gap: 15px; /* Daha küçük ekranlarda boşlukları azaltalım */
+    justify-content: center; /* Küçük ekranlarda kategori öğelerini ortalayalım */
+  }
+}
+
+@media (max-width: 480px) {
+  .categories .category-list {
+    gap: 10px; /* Çok küçük ekranlar için boşlukları iyice küçültüyoruz */
+    flex-direction: column; /* Dikey hizalama yapalım */
+    align-items: center; /* Öğeleri ortalayalım */
+  }
+}
+/*! categories end  */

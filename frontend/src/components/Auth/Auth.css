@@ -1,0 +1,146 @@
+/* Auth.css */
+
+.auth-page {
+  position: relative; /* Pseudo-element için konumlandırma */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #fff;
+  overflow: hidden; /* Blur'un kenarlardan taşmaması için */
+  background: #121212; /* Yedek (fallback) arka plan rengi */
+}
+
+/* BLUR ARKA PLAN - pseudo-element */
+.auth-page::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("https://cdn.oneesports.gg/cdn-data/2023/01/Valorant_Lotus_Episode6ActI_Map-1024x576.jpg") 
+    center center / cover no-repeat;
+  filter: blur(8px);  /* Blur miktarını buradan ayarlayabilirsiniz */
+}
+
+/* Form container */
+.auth-container {
+  width: 90%;
+  max-width: 500px;
+  background: #1e1e1e;
+  border-radius: 8px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  z-index: 1; /* Pseudo-element'in üzerinde kalması için */
+}
+
+.auth-box {
+  padding: 20px 30px;
+}
+
+.auth-box h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  color: #ff4655;
+}
+
+.auth-description {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #c5c5c5;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 14px;
+  color: #c5c5c5;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 14px;
+}
+
+.form-group input::placeholder {
+  color: #888;
+}
+
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #c5c5c5;
+}
+
+.form-options .remember-me span {
+  margin-left: 5px;
+}
+
+.forgot-password {
+  color: #ff4655;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background: #ff4655;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-submit:hover {
+  background: #e03b49;
+}
+
+.toggle-link {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  color: #c5c5c5;
+}
+
+.toggle-link span {
+  color: #ff4655;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toggle-link span:hover {
+  color: #e03b49;
+}
+.link-button {
+  background: none;
+  border: none;
+  color: #ff4655;
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 14px;
+  padding: 0;
+ margin-top: 20px;
+}
+
+.link-button:hover {
+  color: #ff7b7b;
+}

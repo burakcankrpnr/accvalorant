@@ -1,0 +1,279 @@
+/* Genel Ayarlar */
+.footer {
+  background-color: #1a1a1a;
+  color: #f9f9f9;
+  font-family: "Arial", sans-serif;
+}
+
+/* Widget Alanı */
+.widgets-row {
+  padding: 60px 0;
+  border-bottom: 1px solid #444;
+}
+
+.footer-widgets {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-widgets > div {
+  flex: 1;
+}
+
+.brand-info h3 {
+  font-size: 24px;
+  color: #ff4655;
+  margin-bottom: 10px;
+}
+
+.footer-desc {
+  font-size: 14px;
+  opacity: 0.8;
+  margin-bottom: 10px;
+}
+
+.footer-contact {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.widget-nav-menu h4 {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.widget-nav-menu ul {
+  list-style: none;
+  padding: 0;
+}
+
+.widget-nav-menu ul li a {
+  color: #aaa;
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: 8px;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.widget-nav-menu ul li a:hover {
+  color: #ff4655;
+}
+
+/* Sosyal Medya İkonları */
+.footer-contact-bottom .social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.social-icon {
+  background-color: #444;
+  color: white;
+  font-size: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icon:hover {
+  background-color: #ff4655;
+  transform: scale(1.1);
+}
+
+/* Copyright Alanı */
+.copyright-row {
+  padding: 20px 0;
+  background-color: #111;
+}
+
+.footer-copyright {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.footer-menu {
+  display: flex;
+}
+
+.footer-menu-list {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-menu-list .list-item a {
+  color: #aaa;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-menu-list .list-item a:hover {
+  color: #ff4655;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 768px) {
+  .footer-widgets {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-copyright {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
+/* Modal Overlay (Blurred Background) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+  backdrop-filter: blur(8px); /* Blur effect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background: #000000;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Close Button */
+.modal-close-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: #ff4655;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.modal-close-button:hover {
+  background: #ff6b6b;
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Buttons inside Policies */
+.widget-nav-menu ul li button {
+  background: none;
+  border: none;
+  color: #aaa; /* Neutral gray color */
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.3s ease;
+  text-decoration: none; /* Remove underline */
+}
+
+
+.widget-nav-menu ul li button:hover {
+  color: #ff6b6b;
+}
+
+/* ========== MODAL STYLES ========== */
+
+/* Modal overlay: yarı saydam gri arka plan */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Üstte görünsün diye */
+}
+
+/* Modal içerik kapsayıcısı */
+.modal-content {
+  background: #fff;
+  border-radius: 8px;
+  width: 70%;
+  max-width: 900px;
+  padding: 20px;
+  position: relative;
+}
+
+/* Başlık boyutunu küçültüyoruz */
+.modal-content h2 {
+  font-size: 1.4rem; 
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #333;
+}
+
+/* Kapsayıcı .modal-text: 
+   max-height: 60vh => ekranın %60'ı kadar yükseklik
+   overflow-y: auto => dikey kaydırma etkin
+*/
+.modal-text {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #333;
+  max-height: 60vh;
+  overflow-y: auto;
+  white-space: pre-wrap; /* Policy metnindeki satır boşluklarını korumak için */
+  margin-bottom: 1.5rem;
+}
+
+/* Kapanış butonu */
+.modal-close-button {
+  padding: 0.5rem 1rem;
+  background-color: #ff4655;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-close-button:hover {
+  background-color: #ff6a6f;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%;
+    padding: 15px;
+  }
+  .modal-content h2 {
+    font-size: 1.2rem;
+  }
+  .modal-text {
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,43 @@
+.notification-modal .ant-modal-content {
+    background: #0f1923; /* Valorant dark theme */
+    border-radius: 8px;
+    padding: 20px;
+    color: #ffffff;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .notification-modal .modal-content {
+    text-align: center;
+  }
+  
+  .notification-modal .modal-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .notification-modal .modal-buttons button {
+    width: 200px;
+    height: 45px;
+    font-weight: bold;
+  }
+  
+  .notification-modal .ant-btn-primary {
+    background-color: #ff4655; /* Valorant red */
+    border: none;
+    color: white;
+  }
+  
+  .notification-modal .ant-btn-primary:hover {
+    background-color: #d03a49;
+  }
+  
+  .notification-modal .ant-btn {
+    background-color: #1f2733; /* Dark grey */
+    color: #ffffff;
+  }
+  
+  .notification-modal .ant-btn:hover {
+    background-color: #313b47;
+  }
+  

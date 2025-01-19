@@ -1,0 +1,243 @@
+/* Genel Ayarlar */
+.products .container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 90%;
+}
+
+.section-title {
+  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.section-title-logo {
+  width: 50px;
+  height: auto;
+}
+
+.section-title h2 {
+  font-size: 2.5rem;
+  color: #f9f9f9;
+  font-weight: 700;
+}
+
+/* Ürünleri grid şeklinde düzenler */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); /* Daha geniş kartlar */
+  gap: 30px;
+}
+
+/* Ürün Kartı */
+.product-card {
+  background-color: #111111;
+  border: 1px solid #333;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Ürün Görseli */
+.product-card img {
+  width: 100%;
+  height: 200px; /* Daha büyük görsel alanı */
+  object-fit: cover;
+}
+
+/* Ürün Bilgileri */
+.product-details {
+  padding: 1.5rem;
+  color: #fff;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+  .product-price {
+    font-size: 1.5rem;
+    color: #ff4655;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+  }
+
+/* Stok ve Buton */
+.product-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+.product-stock {
+  font-size: 1rem;
+  color: #dddddd;
+  font-weight: 500;
+}
+
+.product-details-btn {
+  background-color: #ff5f2e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.product-details-btn:hover {
+  background-color: #ff784d;
+}
+
+/* Responsive Tasarım */
+@media (max-width: 1024px) {
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+  .product-card img {
+    height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+
+  .product-card img {
+    height: 150px;
+  }
+}
+.products {
+  padding: 20px;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-title-logo {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
+.region-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.region-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.region-button:hover {
+  background-color: #555;
+}
+
+.region-button.active {
+  background-color: #ff4655; /* Seçili buton için kırmızı renk */
+  color: #fff;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.no-products {
+  text-align: center;
+  color: #777;
+  font-size: 18px;
+}
+.region-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.region-button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.region-button:hover {
+  background-color: #555;
+}
+
+.region-button.active {
+  background-color: #ff4655;
+  color: #fff;
+  font-weight: bold;
+}
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* Display exactly 4 items per row */
+  gap: 20px; /* Spacing between items */
+}
+@media (max-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row for tablets */
+    gap: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row for mobile */
+    gap: 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-grid {
+    grid-template-columns: repeat(1, 1fr); /* 1 item per row for small screens */
+    gap: 20px;
+  }
+}

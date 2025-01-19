@@ -1,0 +1,455 @@
+.valorant-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: rgba(20, 20, 20, 0.9);
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+
+.navbar-left .site-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff4655;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #555;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: 1.5rem;
+}
+
+.valorant-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  object-fit: cover;
+  transform: scale(1.5);
+  transform-origin: center;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid #ff4655;
+  color: #ff4655;
+  padding: 0.3rem 0.8rem;
+  margin-left: 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background: #ff4655;
+  color: #fff;
+}
+
+/* ===================== HERO BÖLÜMÜ ===================== */
+.valorant-hero {
+  position: relative;
+  color: #fff;
+  background: linear-gradient(135deg, #121212 0%, #1e1e1e 100%);
+  background-image: url("../../../../background.jpg");
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  padding-top: 100px;
+  overflow: hidden;
+  
+}
+
+.valorant-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #fff;
+}
+
+.hero-text {
+  max-width: 600px;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+  color: #f9f9f9;
+}
+
+.hero-text p {
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+  color: #dcdcdc;
+}
+
+.hero-btn {
+  background-color: #ff4655;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: background-color 0.3s;
+}
+
+.hero-btn:hover {
+  background-color: #ff6a6f;
+}
+
+.hero-image {
+  transition: transform 0.1s ease-out;
+}
+
+  .hero-image img {
+    width: 500px;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+/* ===================== ÖZELLİK KARTLARI ===================== */
+.valorant-features {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: -3rem auto 3rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 2;
+}
+
+.feature-box {
+  flex: 1;
+  background: linear-gradient(135deg, #282828, #383838);
+  border: 2px solid #ff4655;
+  border-radius: 20px;
+  padding: 2.5rem 1.5rem;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  max-width: 350px;
+}
+
+.feature-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px rgba(255, 70, 85, 0.5);
+}
+
+.feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  color: #ffe39f;
+}
+
+.feature-box h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.feature-box p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 280px;
+  color: #dcdcdc;
+}
+
+/* Cart Button Styles */
+.cart-button {
+  display: flex;
+  align-items: center;
+  background: #ff4655;
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.cart-button:hover {
+  background: #ff6b6b;
+}
+
+.cart-icon {
+  font-size: 20px;
+  margin-right: 8px;
+}
+
+.cart-count {
+  position: absolute;
+  top: -5px;
+  right: -15px;
+  background: #fff;
+  color: #ff4655;
+  font-size: 10px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 4px 8px;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ===================== RESPONSIVE TASARIM ===================== */
+@media (max-width: 992px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .valorant-features {
+    margin-top: 2rem;
+    justify-content: center;
+  }
+
+  .feature-box {
+    flex: 0 1 calc(50% - 2rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .valorant-navbar {
+    padding: 0.75rem 1rem;
+  }
+
+  .navbar-left .site-title {
+    font-size: 1.4rem;
+  }
+
+  .navbar-right {
+    gap: 0.5rem;
+  }
+
+  .nav-link {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .cart-button {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+
+  .feature-box {
+    flex: 0 1 100%;
+  }
+
+  .user-info {
+    margin-left: 0.75rem;
+  }
+
+  .valorant-avatar {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 576px) {
+  .valorant-navbar {
+    padding: 0.5rem;
+  }
+
+  .navbar-left .site-title {
+    font-size: 1.2rem;
+  }
+
+  .hero-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero-text p {
+    font-size: 0.95rem;
+  }
+
+
+  .cart-button {
+    padding: 4px 10px;
+    font-size: 12px;
+  }
+
+  .cart-icon {
+    font-size: 16px;
+  }
+
+  .cart-count {
+    font-size: 12px;
+    padding: 2px 6px;
+  }
+
+  .nav-link {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .user-info {
+    font-size: 12px;
+  }
+
+  .logout-btn {
+    padding: 0.2rem 0.6rem;
+    font-size: 12px;
+  }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9); /* Darker overlay for professional look */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(5px); /* Adds a subtle blur for a premium feel */
+}
+
+/* Modal Container */
+.valorant-modal {
+  background: #1f1f1f; /* Valorant-like dark background */
+  color: #fff;
+  border-radius: 12px;
+  padding: 30px;
+  width: 400px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid #ff4655; /* Accent border */
+}
+
+/* Modal Title */
+.modal-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #ff4655; /* Valorant red accent */
+}
+
+/* Modal Message */
+.modal-message {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+/* Button Container */
+.modal-actions {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+}
+
+/* Buttons */
+.valorant-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.confirm-btn {
+  background-color: #ff4655;
+  color: #fff;
+}
+
+.confirm-btn:hover {
+  background-color: #ff6575;
+}
+
+.cancel-btn {
+  background-color: #333;
+  color: #fff;
+}
+
+.cancel-btn:hover {
+  background-color: #555;
+}
+@media (max-width: 576px) {
+  .valorant-navbar {
+    padding: 0.5rem 0.8rem; /* Daha dar bir padding */
+  }
+
+  .navbar-left .site-title {
+    font-size: 0.6rem; /* Başlığı küçült */
+    letter-spacing: 0.2px; /* Daha az boşluk */
+  }
+
+  .nav-link {
+    font-size: 12px; /* Linkleri küçült */
+    padding: 4px 8px;
+  }
+
+  .valorant-avatar {
+    width: 24px; /* Avatarları küçült */
+    height: 24px;
+    transform: scale(1.2); /* Küçültülmüş haliyle tutarlı */
+  }
+
+  .logout-btn {
+    padding: 0.2rem 0.5rem; /* Logout düğmesini küçült */
+    font-size: 10px;
+  }
+}

@@ -1,0 +1,260 @@
+.cart-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .cart-container {
+    max-width: 1200px;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1.2s ease-out;
+  }
+  
+  .cart-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  
+  .cart-form {
+    background-color: #1f2326;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shop-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+  
+  .shop-table th {
+    background-color: #ff4655;
+    color: #ece8e1;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 15px;
+    text-align: left;
+  }
+  
+  .shop-table td {
+    background-color: #263747;
+    padding: 15px;
+    font-size: 14px;
+    color: #ece8e1;
+  }
+  
+  .product-remove button {
+    background: none;
+    border: none;
+    color: #ff4655;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color 0.3s;
+  }
+  
+  .product-remove button:hover {
+    color: #ff8f98;
+  }
+  
+  .product-thumbnail img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .actions-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .coupon,
+  .update-cart {
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-text {
+    padding: 10px;
+    border: 1px solid #ff4655;
+    border-radius: 4px;
+    background-color: #263747;
+    color: #ece8e1;
+    margin-right: 10px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ff4655;
+    color: #ece8e1;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: bold;
+  }
+  
+  .btn:hover {
+    background-color: #ff8f98;
+  }
+  
+  .cart-collaterals {
+    background-color: #1f2326;
+    padding: 20px;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cart-totals h2 {
+    color: #ff4655;
+    font-size: 24px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .cart-totals table {
+    width: 100%;
+  }
+  
+  .cart-totals th,
+  .cart-totals td {
+    padding: 10px 0;
+    font-size: 16px;
+  }
+  
+  .cart-totals th {
+    text-align: left;
+    color: #ece8e1;
+  }
+  
+  .cart-totals td {
+    text-align: right;
+    color: #ff4655;
+  }
+  
+  .cart-totals ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .cart-totals ul li {
+    margin: 5px 0;
+  }
+  
+  .shipping-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  
+  .shipping-calculator-button {
+    color: #ff4655;
+    text-decoration: none;
+  }
+  
+  .shipping-calculator-button:hover {
+    text-decoration: underline;
+  }
+  
+  .checkout .btn-lg {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+  
+  .empty-cart {
+    text-align: center;
+    padding: 50px 0;
+  }
+  
+  .empty-cart i {
+    font-size: 64px;
+    color: #ff4655;
+    margin-bottom: 20px;
+  }
+  
+  .empty-cart h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff4655;
+  }
+  
+  .empty-cart p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #ece8e1;
+  }
+  
+  @media (min-width: 768px) {
+    .cart-page-wrapper {
+      flex-direction: row;
+    }
+  
+    .cart-form {
+      flex: 1;
+    }
+  
+    .cart-collaterals {
+      width: 350px;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .actions-wrapper {
+      flex-direction: column;
+    }
+  
+    .coupon,
+    .update-cart {
+      width: 100%;
+    }
+  
+    .input-text {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .shop-table {
+      font-size: 14px;
+    }
+  
+    .shop-table th,
+    .shop-table td {
+      padding: 10px;
+    }
+  
+    .product-thumbnail,
+    .product-price,
+    .product-quantity {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .cart-page {
+      padding: 20px 10px;
+    }
+  
+    .shop-table th,
+    .shop-table td {
+      padding: 8px;
+    }
+  }
+  
+  
