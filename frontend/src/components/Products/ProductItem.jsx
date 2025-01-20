@@ -10,14 +10,22 @@ const ProductItem = ({ productItem }) => {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const originalPrice = productItem.price?.current || 0;
   const discountPercentage = productItem.price?.discount || 0;
   const discountedPrice =
     originalPrice - (originalPrice * discountPercentage) / 100;
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
@@ -45,7 +53,7 @@ const ProductItem = ({ productItem }) => {
 
   return (
     <>
-      <div className="product-item" onClick={openModal}>
+      <div className="product-item" onClick={() => openModal(productItem)}>
         {/* İndirim Etiketi */}
         {discountPercentage > 0 && (
           <div className="discount-tag">-{discountPercentage}%</div>
@@ -85,19 +93,28 @@ const ProductItem = ({ productItem }) => {
           >
             Add to Cart
           </button>
+          <button
+            className="show-details"
+            onClick={(e) => {
+              e.stopPropagation();
+              openModal(productItem); // "Show Details" ile modalı aç
+            }}
+          >
+            Show Details
+          </button>
         </div>
       </div>
 
       {/* Modal Overlay */}
-      {isModalOpen && (
+      {isModalOpen && selectedProduct && (
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <h2 style={{ color: "#FF4655" }}>{productItem.name}</h2>
+            <h2 style={{ color: "#FF4655" }}>{selectedProduct.name}</h2>
 
             {/* Açıklamayı HTML olarak yerleştirme */}
             <div
               className="product-description"
-              dangerouslySetInnerHTML={{ __html: productItem.description }}
+              dangerouslySetInnerHTML={{ __html: selectedProduct.description }}
             />
 
             <div className="modal-actions">
@@ -113,7 +130,6 @@ const ProductItem = ({ productItem }) => {
 
 ProductItem.propTypes = {
   productItem: PropTypes.object.isRequired,
-  setCartItems: PropTypes.func,
 };
 
 export default ProductItem;

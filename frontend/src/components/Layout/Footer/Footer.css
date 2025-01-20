@@ -277,3 +277,13 @@
     font-size: 0.85rem;
   }
 }
+.email-link {
+  color: #007bff; /* Mavi renk */
+  text-decoration: none; /* Alt çizgi kaldır */
+  font-weight: bold;
+}
+
+.email-link:hover {
+  color: #0056b3; /* Daha koyu mavi */
+  text-decoration: underline; /* Hover durumunda alt çizgi ekle */
+}

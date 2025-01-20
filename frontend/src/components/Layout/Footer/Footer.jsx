@@ -208,8 +208,12 @@ const Footer = () => {
               is not affiliated with Riot Games or Valorant.
             </p>
             <p className="footer-contact">
-              <strong>Email:</strong> contact@accvalorantshop.com
-            </p>
+  <strong>Email:  </strong> 
+  <a href="mailto:contact@accvalorantshop.com" className="email-link">
+     contact@accvalorantshop.com
+  </a>
+</p>
+
           </div>
           <div className="widget-nav-menu">
             <h4>Quick Links</h4>
