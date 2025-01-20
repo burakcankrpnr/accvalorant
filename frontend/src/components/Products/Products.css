@@ -286,3 +286,9 @@
 @keyframes slideFromRight {
   to { right: -350px; } /* 20px mesafeye doğru hareket */
 }
+@media (max-width: 768px) {
+  .products::before,
+  .products::after {
+    display: none; /* Mobil cihazlarda gizle */
+  }
+}
