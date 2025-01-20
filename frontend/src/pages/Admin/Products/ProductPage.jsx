@@ -1,10 +1,14 @@
-import { Button, Popconfirm, Space, Table, message } from "antd";
+import { Button, Input, Popconfirm, Space, Table, message } from "antd";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const { Search } = Input;
+
 const ProductPage = () => {
   const [dataSource, setDataSource] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -78,12 +82,31 @@ const ProductPage = () => {
         setDataSource((prevProducts) => {
           return prevProducts.filter((product) => product._id !== productId);
         });
+        setFilteredData((prevProducts) => {
+          return prevProducts.filter((product) => product._id !== productId);
+        });
       } else {
         message.error("Silme işlemi başarısız.");
       }
     } catch (error) {
       console.log("Silme hatası:", error);
     }
+  };
+
+  const onSearch = (value) => {
+    const filtered = dataSource.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchText(value);
+    const filtered = dataSource.filter((item) =>
+      item.name.toLowerCase().includes(value.toLowerCase())
+    );
+    setFilteredData(filtered);
   };
 
   useEffect(() => {
@@ -118,6 +141,7 @@ const ProductPage = () => {
         });
 
         setDataSource(productsWithCategories);
+        setFilteredData(productsWithCategories);
       } catch (error) {
         console.log("Veri hatası:", error);
       } finally {
@@ -128,12 +152,22 @@ const ProductPage = () => {
   }, [apiUrl]);
 
   return (
-    <Table
-      dataSource={dataSource}
-      columns={columns}
-      rowKey={(record) => record._id}
-      loading={loading}
-    />
+    <>
+      <Input
+        placeholder="Ürün adı ara"
+        allowClear
+        size="large"
+        value={searchText}
+        onChange={handleSearchChange}
+        style={{ marginBottom: 16 }}
+      />
+      <Table
+        dataSource={filteredData}
+        columns={columns}
+        rowKey={(record) => record._id}
+        loading={loading}
+      />
+    </>
   );
 };
 
