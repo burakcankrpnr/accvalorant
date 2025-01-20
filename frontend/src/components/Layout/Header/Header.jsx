@@ -136,11 +136,13 @@ const Header = () => {
                 Trusted by thousands of gamers around the world.
               </p>
               {/* Eğer user varsa sepet linki "hero-btn" içinde gözükebilir */}
-              {user && (
-                <a href="/cart" className="hero-btn">
-                  Buy Now
-                </a>
-              )}  
+              <a
+  href={user ? "/cart" : "/auth?mode=register"} // Eğer kullanıcı varsa "/cart", yoksa "/register"
+  className="hero-btn"
+>
+  Buy Now
+</a>
+
             </div>
 
             {/* Hero Image: Mouse hareketiyle dinamik parallax */}
