@@ -7,6 +7,7 @@ import "./Cart.css";
 const Cart = () => {
   const { cartItems, setCartItems, removeFromCart } = useContext(CartContext);
   const [couponCode, setCouponCode] = useState("");
+  const [isCouponApplied, setIsCouponApplied] = useState(false); // Kupon kontrolü için durum
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const stripePublicKey = import.meta.env.VITE_API_STRIPE_PUBLIC_KEY;
@@ -16,9 +17,14 @@ const Cart = () => {
     : null;
 
   const applyCoupon = async () => {
+    if (isCouponApplied) {
+      return message.error("You have already applied a coupon code!");
+    }
+
     if (couponCode.trim().length === 0) {
       return message.warning("Coupon code cannot be empty.");
     }
+
     try {
       const res = await fetch(`${apiUrl}/api/coupons/code/${couponCode}`);
 
@@ -35,6 +41,7 @@ const Cart = () => {
       });
 
       setCartItems(updatedCartItems);
+      setIsCouponApplied(true); // Kupon uygulandı olarak işaretle
       message.success(`${couponCode} coupon code applied successfully.`);
     } catch (error) {
       console.error(error);
@@ -49,7 +56,7 @@ const Cart = () => {
 
     const body = {
       products: cartItems,
-      user: user
+      user: user,
     };
 
     try {
@@ -98,8 +105,8 @@ const Cart = () => {
                     <th className="product-thumbnail">&nbsp;</th>
                     <th className="product-name">Product</th>
                     <th className="product-price">Price</th>
-                      <th className="product-quantity">Quantity</th>
-                      <th className="product-subtotal">Total</th>
+                    <th className="product-quantity">Quantity</th>
+                    <th className="product-subtotal">Total</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -116,14 +123,24 @@ const Cart = () => {
                       </td>
                       <td className="product-thumbnail">
                         <img
-                          src={item.img && item.img[0] ? item.img[0] : "/placeholder.jpg"}
+                          src={
+                            item.img && item.img[0]
+                              ? item.img[0]
+                              : "/placeholder.jpg"
+                          }
                           alt={item.name}
                         />
                       </td>
                       <td className="product-name">{item.name}</td>
-                      <td className="product-price">{parseFloat(item.price).toFixed(2)} $</td>
-                      <td className="product-quantity">{parseInt(item.quantity)}</td>
-                      <td className="product-subtotal">{(item.price * item.quantity).toFixed(2)} $</td>
+                      <td className="product-price">
+                        {parseFloat(item.price).toFixed(2)} $
+                      </td>
+                      <td className="product-quantity">
+                        {parseInt(item.quantity)}
+                      </td>
+                      <td className="product-subtotal">
+                        {(item.price * item.quantity).toFixed(2)} $
+                      </td>
                     </tr>
                   ))}
                 </tbody>
@@ -153,10 +170,11 @@ const Cart = () => {
 
             <div className="cart-collaterals">
               <div className="cart-totals">
-                <h2><i className="bi bi-cart-fill"></i> Cart Totals</h2>
+                <h2>
+                  <i className="bi bi-cart-fill"></i> Cart Totals
+                </h2>
                 <table>
                   <tbody>
-                    
                     <tr className="order-total">
                       <th>Total</th>
                       <td>
@@ -178,7 +196,9 @@ const Cart = () => {
             <i className="bi bi-cart-x"></i>
             <h2>Your cart is empty!</h2>
             <p>Start shopping now and discover unique Valorant products.</p>
-            <a href="/" className="btn">Start Shopping</a>
+            <a href="/" className="btn">
+              Start Shopping
+            </a>
           </div>
         )}
       </div>
