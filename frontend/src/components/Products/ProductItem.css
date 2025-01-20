@@ -30,14 +30,13 @@
 /* İndirim yüzdesi (düz şekilde sol üstte) */
 .discount-tag {
   position: absolute;
-  top: 15px; /* Kutunun üst kısmına yakın */
-  left: 15px; /* Sol tarafta yer alır */
+  top: 35px; /* Kutunun üst kısmına yakın */
+  right: 11px; /* Sol tarafta yer alır */
   background-color: #ff4655; /* Valorant kırmızı tonu */
   color: #fff; /* Beyaz metin rengi */
   font-size: 14px; /* Daha okunabilir font boyutu */
   font-weight: bold; /* Kalın yazı */
-  padding: 8px 12px; /* Kenarlıklar */
-  z-index: 3;
+  padding: 5px 10px;  z-index: 3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Hafif gölge */
   border-radius: 5px; /* Köşeleri yuvarlat */
   text-align: center;
@@ -63,7 +62,7 @@
 /* Ürün Görseli */
 .product-image {
   width: 100%;
-  height: 350px; /* Fotoğraf daha uzun */
+  height: 100%; /* Fotoğraf daha uzun */
   background: #000;
   display: flex;
   justify-content: center;
