@@ -140,7 +140,7 @@ const Header = () => {
   href={user ? "/cart" : "/auth?mode=register"} // Eğer kullanıcı varsa "/cart", yoksa "/register"
   className="hero-btn"
 >
-  Buy Now
+  Buy Now !
 </a>
 
             </div>
