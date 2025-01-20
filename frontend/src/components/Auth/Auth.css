@@ -130,6 +130,7 @@
 .toggle-link span:hover {
   color: #e03b49;
 }
+
 .link-button {
   background: none;
   border: none;
@@ -138,9 +139,108 @@
   text-decoration: underline;
   font-size: 14px;
   padding: 0;
- margin-top: 20px;
+  margin-top: 20px;
 }
 
 .link-button:hover {
   color: #ff7b7b;
+}
+/* Telefon Giriş Konteyneri */
+.react-tel-input {
+  position: relative;
+  width: 100%;
+}
+
+.react-tel-input .form-control {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  padding: 10px 12px 10px 50px; /* Bayrak için boşluk bırak */
+  font-size: 14px;
+  color: #495057;
+  background-color: #fff;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  width: 100%;
+}
+
+.react-tel-input .form-control:focus {
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 5px rgba(128, 189, 255, 0.5);
+}
+
+.react-tel-input .flag-dropdown {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-right: 1px solid #ced4da;
+  border-radius: 4px 0 0 4px;
+}
+
+.react-tel-input .flag-dropdown:hover {
+  background-color: #e9ecef;
+}
+
+.react-tel-input .country-list {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1050;
+}
+
+.react-tel-input .country-list .country {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #495057;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.react-tel-input .country-list .country:hover {
+  background-color: #f8f9fa;
+}
+
+.react-tel-input .country-list .country .flag {
+  width: 20px;
+  height: 15px;
+  margin-right: 10px;
+}
+
+.react-tel-input .country-list .country .dial-code {
+  color: #6c757d;
+}
+
+.react-tel-input .country-list .search {
+  padding: 8px 12px;
+  border-bottom: 1px solid #ced4da;
+  background-color: #f8f9fa;
+}
+
+.react-tel-input .country-list .search input {
+  width: 100%;
+  padding: 6px 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #495057;
+}
+
+.react-tel-input .country-list .search input::placeholder {
+  color: #6c757d;
 }

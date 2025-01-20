@@ -1,6 +1,6 @@
 /* Genel Ayarlar */
 .products .container {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
   width: 90%;
 }
@@ -251,14 +251,16 @@
 .products::after {
   content: "";
   position: absolute;
-  width: 50%;
+  width: 1000px;
   height: 100%;
-  top: 0;
+  top: 150px;
   opacity: 0.15;
   z-index: -1;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  max-width: 1000px;
+  max-height: 1000px;
 }
 
 /* Soldan Viper resmi için */
