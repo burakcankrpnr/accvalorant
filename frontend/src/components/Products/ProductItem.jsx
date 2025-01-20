@@ -80,29 +80,28 @@ const ProductItem = ({ productItem }) => {
 
         {/* Ürün Bilgileri */}
         <div className="product-info">
-          <h3 className="product-title">{productItem.name}</h3>
-          <div className="product-prices">
-            <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
-            {discountPercentage > 0 && (
-              <span className="old-price">${originalPrice.toFixed(2)}</span>
-            )}
-          </div>
-          <button
-            className="add-to-cart"
-            onClick={(e) => handleAddToCart(e)}
-          >
-            Add to Cart
-          </button>
-          <button
-            className="show-details"
-            onClick={(e) => {
-              e.stopPropagation();
-              openModal(productItem); // "Show Details" ile modalı aç
-            }}
-          >
-            Show Details
-          </button>
-        </div>
+  <h3 className="product-title">{productItem.name}</h3>
+  <div className="product-prices">
+    <strong className="new-price">${discountedPrice.toFixed(2)}</strong>
+    {discountPercentage > 0 && (
+      <span className="old-price">${originalPrice.toFixed(2)}</span>
+    )}
+  </div>
+  <div className="buttons"> 
+    <button className="add-to-cart" onClick={(e) => handleAddToCart(e)}>
+      Add to Cart
+    </button>
+    <button
+      className="show-details"
+      onClick={(e) => {
+        e.stopPropagation();
+        openModal(productItem);
+      }}
+    >
+      Show Details
+    </button>
+  </div>
+  </div>
       </div>
 
       {/* Modal Overlay */}

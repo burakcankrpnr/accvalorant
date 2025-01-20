@@ -92,22 +92,20 @@
     padding: 20px 15px;
     box-sizing: border-box;
     z-index: 1;
-    display: flex;
-    flex-direction: column;
     align-items: center;
   }
 
   /* Ürün Başlığı */
   .product-title {
-    font-size: 12px;
-    font-weight: bold;
-    color: #ffffff;
+    font-size: 18px !important;
+    color: #ffffff !important;
     text-decoration: none;
     transition: color 0.3s ease;
+    margin-top: 20px !important;
   }
 
   .product-title:hover {
-    color: #ff6b2f;
+    color: #ff6b2f !important;
   }
 
   /* Fiyat Kısmı */
@@ -131,35 +129,7 @@
   }
 
   /* Sepete Ekle Butonu */
-  .add-to-cart {
-    background-color: #ff6b2f;
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-    padding: 8px 15px;
-    border-radius: 20px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .add-to-cart:hover {
-    background-color: #ff8a50;
-  }
-  .stock-info.in-stock {
-    color: green;
-    font-weight: bold;
-  }
-
-  .stock-info.out-of-stock {
-    color: red;
-    font-weight: bold;
-  }
-
-  .add-to-cart:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
+  
   /* Modal arka planı ve konumlandırması */
   .modal-overlay {
     position: fixed;
@@ -208,22 +178,7 @@
     justify-content: center;
     z-index: 1000;
   }
-.show-details {
-  background-color: #007bff; /* Mavi renk */
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  padding: 8px 15px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  margin-top: 5px; /* Add to Cart butonundan biraz boşluk */
-  transition: background-color 0.3s ease;
-}
 
-.show-details:hover {
-  background-color: #0056b3; /* Daha koyu mavi */
-}
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -263,4 +218,62 @@
 .modal-actions button:last-child {
   background-color: #ff6b2f;
   color: #fff;
+}
+.show-details {
+  background-color: #007bff; /* Mavi renk */
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px; /* Add to Cart butonundan biraz boşluk */
+  transition: background-color 0.3s ease;
+}
+
+.show-details:hover {
+  background-color: #0056b3; /* Daha koyu mavi */
+}
+.add-to-cart {
+  background-color: #ff6b2f;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart:hover {
+  background-color: #ff8a50;
+}
+.stock-info.in-stock {
+  color: green;
+  font-weight: bold;
+}
+
+.stock-info.out-of-stock {
+  color: red;
+  font-weight: bold;
+}
+
+.add-to-cart:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+.add-to-cart,
+.show-details {
+  gap: 10px;
+}
+.buttons {
+  justify-content: center !important;
+}     .add-to-cart {
+  margin-right: 15px; /* Sağ tarafa boşluk ekler */
+}
+
+.show-details {
+  margin-left: 0; /* Sol tarafa boşluk gerekmez */
 }

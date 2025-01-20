@@ -6,7 +6,20 @@ import "react-phone-input-2/lib/style.css";
 import "./Auth.css";
 
 const valorantCharacters = [
-  // Valorant karakter resimleri
+  "https://i.imgur.com/NvtkNPU.png",
+  "https://i.imgur.com/ETMk87f.png",
+  "https://i.imgur.com/YrXplp1.png",
+  "https://i.imgur.com/MuSjhD6.png",
+  "https://i.imgur.com/MdNk3RR.png",  
+  "https://i.imgur.com/p6Dn3jY.png",
+  "https://i.imgur.com/zZwMI9z.png",
+  "https://i.imgur.com/En1W7Y1.png",
+  "https://i.imgur.com/MrMQjun.png",
+  "https://i.imgur.com/K59jXD9.png",
+  "https://i.imgur.com/08cKK0A.png",
+  "https://i.imgur.com/8bAEd4o.png",
+  "https://i.imgur.com/zTnE1EO.png",
+
 ];
 
 const Auth = () => {
@@ -17,7 +30,6 @@ const Auth = () => {
     email: "",
     phone: "",
     country: "",
-    city: "",
     password: "",
     confirmPassword: "",
   });
@@ -85,20 +97,7 @@ const Auth = () => {
     fetchCountry();
   }, []);
 
-  useEffect(() => {
-    // Update cities based on selected country
-    if (formData.country === "USA") {
-      setCities(["New York", "Los Angeles", "Chicago"]);
-    } else if (formData.country === "Canada") {
-      setCities(["Toronto", "Vancouver", "Montreal"]);
-    } else if (formData.country === "UK") {
-      setCities(["London", "Manchester", "Birmingham"]);
-    } else if (formData.country === "Turkey") {
-      setCities(["Istanbul", "Ankara", "Izmir"]);
-    } else {
-      setCities([]);
-    }
-  }, [formData.country]);
+ 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -171,6 +170,20 @@ const Auth = () => {
           <form onSubmit={handleSubmit}>
             {!isLogin && (
               <>
+              <div className="form-group">
+                  <label>
+                    Username <span className="required">*</span>
+                  </label>
+                  <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter your username"
+                    value={formData.username}
+                    className="animated-input"
+                    onChange={handleInputChange}
+                    required
+                  />
+              </div>
                 <div className="form-group">
                   <label>
                     First Name <span className="required">*</span>
