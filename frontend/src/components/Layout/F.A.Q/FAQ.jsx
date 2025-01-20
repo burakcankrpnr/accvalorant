@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./FAQ.css";
 
 const faqData = [
@@ -30,15 +30,29 @@ const faqData = [
 ];
 
 const FAQ = () => {
-  const [activeIndex, setActiveIndex] = useState(null); // Açık öğeyi takip eden durum
+  const [activeIndex, setActiveIndex] = useState(null);
+  const faqRef = useRef(null); // FAQ container'ı referansı
 
   const toggleAccordion = (index) => {
-    // Tıklanan öğe zaten açıksa kapat, değilse aç
     setActiveIndex((prevIndex) => (prevIndex === index ? null : index));
   };
 
+  // "Click outside" algılama
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (faqRef.current && !faqRef.current.contains(event.target)) {
+        setActiveIndex(null); // Eğer dışarı tıklanırsa tüm akordeonları kapat
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <section className="faq-section">
+    <section className="faq-section" ref={faqRef}>
       <h2 className="faq-title">F.A.Q.</h2>
       <div className="faq-list">
         {faqData.map((item, index) => (
@@ -46,7 +60,7 @@ const FAQ = () => {
             key={index}
             {...item}
             isOpen={activeIndex === index}
-            onClick={() => toggleAccordion(index)} // Tıklama işlemi
+            onClick={() => toggleAccordion(index)}
           />
         ))}
       </div>
