@@ -163,7 +163,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-
+              
         {/* Logout Confirmation Modal */}
         {isLogoutModalVisible && (
           <div className="modal-overlay">

@@ -501,3 +501,17 @@
   z-index: -1; /* Arka planı içeriğin arkasında tutar */
 }
 
+.valorant-avatar {
+  width: 30px; /* Genişlik */
+  height: 30px; /* Yükseklik */
+  border-radius: 50%; /* Yuvarlak şekil */
+  border: 1px solid #ddd; /* Hafif çerçeve */
+  padding: 3px; /* Çerçeveyle arası */
+  object-fit: cover; /* Görseli düzgün boyutlandır */
+  transition: transform 0.3s, box-shadow 0.3s; /* Hover efekti için geçiş */
+}
+
+.valorant-avatar:hover {
+  transform: scale(1.1); /* Hover'da büyütme efekti */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hover'da gölge efekti */
+}

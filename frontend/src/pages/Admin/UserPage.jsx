@@ -1,5 +1,6 @@
 import { Button, Popconfirm, Table, message, Modal } from "antd";
 import { useCallback, useEffect, useState } from "react";
+import "./UserPage.css";
 
 const UserPage = () => {
   const [dataSource, setDataSource] = useState([]);
