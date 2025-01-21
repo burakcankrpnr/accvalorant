@@ -61,7 +61,9 @@ const Header = () => {
         {/* Navbar */}
         <nav className="valorant-navbar">
         <div className="navbar-left">
-  <img src="/sds-Photoroom.png" alt="AccValorant Logo" className="logo" />
+        <Link to="/">
+      <img src="/sds-Photoroom.png" alt="AccValorant Logo" className="logo" />
+    </Link>
 </div>
 
           <div className="navbar-right">
@@ -140,7 +142,7 @@ const Header = () => {
   href={user ? "/cart" : "/auth?mode=register"} // Eğer kullanıcı varsa "/cart", yoksa "/register"
   className="hero-btn"
 >
-  Buy Now !
+  Buy Now!
 </a>
 
             </div>

@@ -1,43 +1,88 @@
-.notification-modal .ant-modal-content {
-    background: #0f1923; /* Valorant dark theme */
-    border-radius: 8px;
-    padding: 20px;
-    color: #ffffff;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  }
+.notification-modal {
+  background-color: #1c2533 !important; /* Modal background */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.modal-image {
+  max-width: 100%;
   
-  .notification-modal .modal-content {
-    text-align: center;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Typography */
+.ant-typography {
+  color: #fff;
+}
+
+.ant-typography h3 {
+  font-weight: 700;
+}
+
+.modal-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Button Styles */
+.ant-btn-primary {
+  background-color: #ff4655;
+  border-color: #ff4655;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.ant-btn-primary:hover {
+  background-color: #ff677d;
+  border-color: #ff677d;
+}
+
+.ant-btn {
+  background-color: #2e3a47;
+  border-color: #2e3a47;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.ant-btn:hover {
+  background-color: #49566b;
+  border-color: #49566b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 15px;
   }
-  
-  .notification-modal .modal-image {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 20px;
+
+  .modal-image {
+    margin-bottom: 15px;
   }
-  
-  .notification-modal .modal-buttons button {
-    width: 200px;
-    height: 45px;
-    font-weight: bold;
+
+  .ant-btn-primary, .ant-btn {
+    font-size: 14px;
+    padding: 6px 12px;
   }
-  
-  .notification-modal .ant-btn-primary {
-    background-color: #ff4655; /* Valorant red */
-    border: none;
-    color: white;
-  }
-  
-  .notification-modal .ant-btn-primary:hover {
-    background-color: #d03a49;
-  }
-  
-  .notification-modal .ant-btn {
-    background-color: #1f2733; /* Dark grey */
-    color: #ffffff;
-  }
-  
-  .notification-modal .ant-btn:hover {
-    background-color: #313b47;
-  }
-  
+}

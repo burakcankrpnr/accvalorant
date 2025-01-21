@@ -164,7 +164,7 @@ const Auth = () => {
           <p className="auth-description">
             {isLogin
               ? "Please enter your email and password to Login to your account."
-              : "Fill in the form below to create a new Valorant account."}
+              : "Fill in the form below to create a new AccValo.Shop account."}
           </p>
 
           <form onSubmit={handleSubmit}>

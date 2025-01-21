@@ -8,9 +8,11 @@ const NotificationModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const hasPrompted = localStorage.getItem("notificationsAllowed");
-    if (!hasPrompted) {
-      setIsModalOpen(true); // Show the modal if the user hasn't made a decision
+    const lastShown = localStorage.getItem("notificationLastShown");
+    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+
+    if (lastShown !== today) {
+      setIsModalOpen(true); // Show the modal if it hasn't been shown today
     }
   }, []);
 
@@ -18,28 +20,33 @@ const NotificationModal = () => {
     if ("Notification" in window) {
       const permission = await Notification.requestPermission();
       if (permission === "granted") {
-        localStorage.setItem("notificationsAllowed", "true");
         new Notification("Welcome to Valorant!", {
           body: "You will now receive the latest updates and notifications!",
           icon: "https://cdn.oneesports.gg/cdn-data/2023/01/Valorant_Lotus_Episode6ActI_Map-1024x576.jpg",
         });
       }
     }
-    setIsModalOpen(false);
+    closeModal();
   };
 
   const handleDenyNotifications = () => {
-    localStorage.setItem("notificationsAllowed", "false");
+    closeModal();
+  };
+
+  const closeModal = () => {
+    const today = new Date().toISOString().split("T")[0];
+    localStorage.setItem("notificationLastShown", today); // Store today's date
     setIsModalOpen(false);
   };
 
   return (
     <Modal
-      open={isModalOpen} // Use `open` instead of `visible`
+      open={isModalOpen}
       centered
       footer={null}
       closable={false}
       className="notification-modal"
+      onCancel={closeModal} // Close modal when clicking outside
     >
       <div className="modal-content">
         <img
@@ -48,7 +55,7 @@ const NotificationModal = () => {
           className="modal-image"
         />
         <Title level={3} style={{ textAlign: "center", color: "#ff4655" }}>
-          Enable Notifications for Valorant Updates!
+          Enable Notifications for AccValorant.Shop !
         </Title>
         <Text style={{ textAlign: "center", display: "block", marginBottom: 20 }}>
           Stay ahead with the latest updates, event reminders, and exclusive offers.
@@ -65,6 +72,5 @@ const NotificationModal = () => {
     </Modal>
   );
 };
-
 
 export default NotificationModal;

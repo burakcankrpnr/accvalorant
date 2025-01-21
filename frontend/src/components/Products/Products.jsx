@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import ProductItem from "./ProductItem";
 import "./Products.css";
-import { message } from "antd";
+import { message, Input } from "antd";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [selectedRegion, setSelectedRegion] = useState(""); // Varsayılan olarak tüm ürünler listelenecek
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [selectedRegion, setSelectedRegion] = useState(""); // Default to all products
+  const [searchTerm, setSearchTerm] = useState(""); // For search functionality
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
-  // API'den ürünleri bölgeye göre getir
+  // Fetch products from the API based on region
   const fetchProducts = async (region) => {
     try {
       const url = region ? `${apiUrl}/api/products?region=${region}` : `${apiUrl}/api/products`;
@@ -18,6 +20,7 @@ const Products = () => {
         const data = await response.json();
         console.log("Fetched products:", data);
         setProducts(data);
+        setFilteredProducts(data); // Initialize filtered products with all products
       } else {
         message.error("Failed to fetch products.");
       }
@@ -27,7 +30,21 @@ const Products = () => {
     }
   };
 
-  // Bölge değiştiğinde ürünleri yükle
+  // Filter products based on the search term
+  const handleSearch = (value) => {
+    setSearchTerm(value);
+    if (value.trim() === "") {
+      setFilteredProducts(products); // Reset to all products when search is cleared
+    } else {
+      const lowercasedValue = value.toLowerCase();
+      const filtered = products.filter((product) =>
+        product.name.toLowerCase().includes(lowercasedValue)
+      );
+      setFilteredProducts(filtered);
+    }
+  };
+
+  // Fetch products when the selected region changes
   useEffect(() => {
     fetchProducts(selectedRegion);
   }, [selectedRegion]);
@@ -44,7 +61,7 @@ const Products = () => {
           <h2>Products</h2>
         </div>
 
-        {/* Bölge Seçimi */}
+        {/* Region Selection */}
         <div className="region-buttons">
           {["ALL PRODUCTS", "EU", "NA", "LA", "AP"].map((region) => (
             <button
@@ -59,10 +76,21 @@ const Products = () => {
           ))}
         </div>
 
-        {/* Ürün Listesi */}
+        {/* Search Bar */}
+        <div className="search-bar">
+          <Input
+            placeholder="Search for products..."
+            value={searchTerm}
+            onChange={(e) => handleSearch(e.target.value)}
+            allowClear
+            style={{ width: "100%", marginBottom: "20px" }}
+          />
+        </div>
+
+        {/* Product List */}
         <div className="product-grid">
-          {products.length > 0 ? (
-            products.map((product) => (
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
               <ProductItem productItem={product} key={product._id} />
             ))
           ) : (
@@ -70,7 +98,7 @@ const Products = () => {
               No products available for the {selectedRegion || "All"} region.
             </p>
           )}
-        </div>  
+        </div>
       </div>
     </section>
   );

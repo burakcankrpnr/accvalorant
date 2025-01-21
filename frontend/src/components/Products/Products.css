@@ -287,3 +287,28 @@
     display: none; /* Mobil cihazlarda gizle */
   }
 }
+.search-bar {
+  margin: 20px 0;
+}
+
+.search-bar input {
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ff4655 ; /* Valorant red border */
+  background-color: #ff4655 ; /* Red background */
+  color: #000; /* Black text */
+  outline: none;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.search-bar input::placeholder {
+  color: #000; /* Black placeholder text */
+  opacity: 0.7; /* Slight transparency */
+}
+
+.search-bar input:focus {
+  border-color: #ff677d; /* Lighter red on focus */
+  color: #000;
+}

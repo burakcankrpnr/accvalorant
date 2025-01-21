@@ -495,7 +495,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: url('/wa.jpg') no-repeat center center;
+  background: url('/wa2.jpg') no-repeat center center;
   background-size: cover;
   filter: blur(3px); /* Blur miktarını isteğe göre ayarlayın */
   z-index: -1; /* Arka planı içeriğin arkasında tutar */
@@ -508,10 +508,18 @@
   border: 1px solid #ddd; /* Hafif çerçeve */
   padding: 3px; /* Çerçeveyle arası */
   object-fit: cover; /* Görseli düzgün boyutlandır */
-  transition: transform 0.3s, box-shadow 0.3s; /* Hover efekti için geçiş */
+  transition: transform 0.2s, box-shadow 0.2s; /* Hover efekti için geçiş */
 }
 
 .valorant-avatar:hover {
-  transform: scale(1.1); /* Hover'da büyütme efekti */
+  transform: scale(1.3); /* Hover'da büyütme efekti */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Hover'da gölge efekti */
+}
+.logo {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05); /* Slightly enlarge the logo on hover */
 }
