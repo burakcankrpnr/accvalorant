@@ -14,7 +14,7 @@ const OrderPage = () => {
     {
       title: "Sipariş Fiyatı",
       dataIndex: "amount",
-      render: (record) => <b>₺{(record / 100).toFixed(2)}</b>,
+      render: (record) => <b>${(record / 100).toFixed(2)}</b>,
     },
   ];
 
