@@ -39,8 +39,8 @@
 }
 
 /* Button Styles */
-.ant-btn-primary {
-  background-color: #ff4655;
+.ant-btn2-primary {
+  background-color: #000000;
   border-color: #ff4655;
   color: #fff;
   font-weight: bold;
@@ -50,12 +50,12 @@
   transition: all 0.3s ease;
 }
 
-.ant-btn-primary:hover {
+.ant-btn2-primary:hover {
   background-color: #ff677d;
   border-color: #ff677d;
 }
 
-.ant-btn {
+.ant-btn2 {
   background-color: #2e3a47;
   border-color: #2e3a47;
   color: #fff;
@@ -66,7 +66,7 @@
   transition: all 0.3s ease;
 }
 
-.ant-btn:hover {
+.ant-btn2:hover {
   background-color: #49566b;
   border-color: #49566b;
 }
@@ -81,7 +81,7 @@
     margin-bottom: 15px;
   }
 
-  .ant-btn-primary, .ant-btn {
+  .ant-btn2-primary, .ant-btn2 {
     font-size: 14px;
     padding: 6px 12px;
   }

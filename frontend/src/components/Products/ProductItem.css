@@ -49,15 +49,28 @@
   /* Stok bilgisi */
   .stock-info {
     position: absolute;
-    top: 10px;
-    right: 0px;
+    top: 25px;
+    right: 15px;
     color: #fff;
     font-size: 12px;
     padding: 5px 15px;
     border-radius: 15px;
     font-weight: bold;
     z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7); /* Arka plan rengini yarı saydam yap */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Yarı saydam ince kenar */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3), /* Hafif dış gölge */
+                inset 0 1px 2px rgba(255, 255, 255, 0.2); /* İç gölge efekti */
+    backdrop-filter: blur(3px); /* Cam efekti için hafif bulanıklık */
+    transition: all 0.3s ease; /* Geçiş animasyonu */
   }
+  
+  .stock-info:hover {
+    border-color: rgba(255, 255, 255, 0.6); /* Hover'da daha belirgin kenar */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4), 
+                inset 0 2px 4px rgba(255, 255, 255, 0.3); /* Hover sırasında gölge artışı */
+  }
+  
 
   /* Ürün Görseli */
   .product-image {
