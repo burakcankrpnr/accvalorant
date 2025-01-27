@@ -20,7 +20,7 @@ router.post("/", async (req, res) => {
 
     return {
       price_data: {
-        currency: "try",
+        currency: "usd",
         product_data: {
           name: product.name,
         },
@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
     } else {
       lineItems.push({
         price_data: {
-          currency: "try",
+          currency: "usd",
           product_data: {
             name: "Hızlı Kargo",
           },
