@@ -205,7 +205,7 @@
 .cart-button {
   display: flex;
   align-items: center;
-  background: #ff4655;
+  background: #fa2234;
   color: #fff;
   border: none;
   border-radius: 25px;
@@ -218,7 +218,7 @@
 }
 
 .cart-button:hover {
-  background: #ff6b6b;
+  background: #fc1a1a;
 }
 
 .cart-icon {
@@ -331,7 +331,7 @@
   }
 
   .cart-count {
-    font-size: 12px;
+    font-size: 8px;
     padding: 2px 6px;
   }
 
@@ -522,4 +522,20 @@
 
 .logo:hover {
   transform: scale(1.05); /* Slightly enlarge the logo on hover */
+}
+.nav-link2 {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #333;
+  border: none;
+  border-radius: 25px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-link2:hover {
+  background-color: #555;
 }

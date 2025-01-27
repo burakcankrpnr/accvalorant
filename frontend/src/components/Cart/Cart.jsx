@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/CartProvider";
-import { message } from "antd";
+import { message, Spin } from "antd";
 import { loadStripe } from "@stripe/stripe-js";
 import "./Cart.css";
 
 const Cart = () => {
   const { cartItems, setCartItems, removeFromCart } = useContext(CartContext);
   const [couponCode, setCouponCode] = useState("");
-  const [isCouponApplied, setIsCouponApplied] = useState(false); // Kupon kontrolü için durum
+  const [isCouponApplied, setIsCouponApplied] = useState(false); // Kupon kontrolü
+  const [isLoading, setIsLoading] = useState(false); // Yükleme durumu
+  const [cartTotal, setCartTotal] = useState(0); // Toplam fiyat
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
   const stripePublicKey = import.meta.env.VITE_API_STRIPE_PUBLIC_KEY;
@@ -16,6 +18,7 @@ const Cart = () => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
+  // Kupon uygulama
   const applyCoupon = async () => {
     if (isCouponApplied) {
       return message.error("You have already applied a coupon code!");
@@ -28,8 +31,12 @@ const Cart = () => {
     try {
       const res = await fetch(`${apiUrl}/api/coupons/code/${couponCode}`);
 
+      if (res.status === 404) {
+        return message.warning("Invalid coupon code. Please try again.");
+      }
+
       if (!res.ok) {
-        return message.warning("The coupon code you entered is invalid!");
+        return message.error("An error occurred while validating the coupon.");
       }
 
       const data = await res.json();
@@ -41,7 +48,7 @@ const Cart = () => {
       });
 
       setCartItems(updatedCartItems);
-      setIsCouponApplied(true); // Kupon uygulandı olarak işaretle
+      setIsCouponApplied(true); // Kuponun uygulandığını işaretle
       message.success(`${couponCode} coupon code applied successfully.`);
     } catch (error) {
       console.error(error);
@@ -49,6 +56,7 @@ const Cart = () => {
     }
   };
 
+  // Ödeme işlemi
   const handlePayment = async () => {
     if (!user) {
       return message.info("You must be logged in to make a payment!");
@@ -60,6 +68,7 @@ const Cart = () => {
     };
 
     try {
+      setIsLoading(true); // Yükleme başlat
       const stripe = await loadStripe(stripePublicKey);
 
       const res = await fetch(`${apiUrl}/api/payment`, {
@@ -81,19 +90,32 @@ const Cart = () => {
       if (result.error) {
         throw new Error(result.error.message);
       }
+
+      setCartItems([]); // Ödeme sonrası sepeti boşalt
+      message.success("Payment successful. Your cart has been cleared!");
     } catch (error) {
       console.error(error);
       message.error("An error occurred during the payment process.");
+    } finally {
+      setIsLoading(false); // Yükleme bitir
     }
   };
 
-  const cartItemTotals = cartItems.map((item) => item.price * item.quantity);
-  const subTotal = cartItemTotals.reduce((prev, current) => prev + current, 0);
-
-  const cartTotal = subTotal.toFixed(2);
+  // Toplam fiyat hesaplama
+  useEffect(() => {
+    const newCartTotal = cartItems
+      .reduce((total, item) => total + item.price * item.quantity, 0)
+      .toFixed(2);
+    setCartTotal(newCartTotal);
+  }, [cartItems]);
 
   return (
     <section className="cart-page">
+      {isLoading && (
+        <div className="loading-overlay">
+          <Spin size="large" tip="Processing..."></Spin>
+        </div>
+      )}
       <div className="cart-container">
         {cartItems.length > 0 ? (
           <div className="cart-page-wrapper">
@@ -136,7 +158,26 @@ const Cart = () => {
                         {parseFloat(item.price).toFixed(2)} $
                       </td>
                       <td className="product-quantity">
-                        {parseInt(item.quantity)}
+                        <input
+                          type="number"
+                          min="1"
+                          value={item.quantity}
+                          onChange={(e) => {
+                            const newQuantity = parseInt(e.target.value, 10);
+                            if (newQuantity < 1) {
+                              removeFromCart(item._id);
+                              message.info("Item removed from the cart.");
+                            } else {
+                              setCartItems((prevItems) =>
+                                prevItems.map((cartItem) =>
+                                  cartItem._id === item._id
+                                    ? { ...cartItem, quantity: newQuantity }
+                                    : cartItem
+                                )
+                              );
+                            }
+                          }}
+                        />
                       </td>
                       <td className="product-subtotal">
                         {(item.price * item.quantity).toFixed(2)} $
@@ -157,12 +198,6 @@ const Cart = () => {
                   />
                   <button className="btn" type="button" onClick={applyCoupon}>
                     Apply Coupon
-                  </button>
-                </div>
-
-                <div className="update-cart">
-                  <button className="btn" type="button">
-                    Update Cart
                   </button>
                 </div>
               </div>

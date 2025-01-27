@@ -66,66 +66,79 @@ const Header = () => {
     </Link>
 </div>
 
-          <div className="navbar-right">
-            {/* Kullanıcı GİRİŞ YAPMIŞSA */}
-            {user ? (
-              <>
-                <div className="user-info">
-                  {user.characterImage && (
-                    <img
-                      src={user.characterImage}
-                      alt="Valorant Character"
-                      className="valorant-avatar"
-                    />
-                  )}
-                  <span
-                    className="user-greeting"
-                    style={{ color: "#fff", marginLeft: "8px" }}
-                  >
-                    Hello, {user.username}!
-                  </span>
-                  <button onClick={showLogoutModal} className="logout-btn">
-                    Log Out
-                  </button>
-                </div>
+<div className="navbar-right">
+  {/* Kullanıcı GİRİŞ YAPMIŞSA */}
+  {user ? (
+    <>
+      <div className="user-info">
+        {user.characterImage && (
+          <img
+            src={user.characterImage}
+            alt="Valorant Character"
+            className="valorant-avatar"
+          />
+        )}
+        <span
+          className="user-greeting"
+          style={{ color: "#fff", marginLeft: "-3px" }}
+        >
+          Hello, {user.username}!
+        </span>
+      </div>
 
-                {/* Eğer admin ise admin panel linki */}
-                {user.role === "admin" && (
-                  <Link to="/admin" className="nav-link">
-                    Admin
-                  </Link>
-                )}
-
-                {/* My Cart linki (giriş yapılmışsa göster) */}
-                <button
-  className="nav-link cart-button"
-  onClick={() => simulatePageLoad("/cart")}
->
-  <span className="cart-icon-wrapper">
-    <i className="bi bi-cart-fill"></i>
-    <span className="cart-count">({cartItems.length})</span>
-  </span>
-</button>
-
-              </>
-            ) : (
-              /* Kullanıcı GİRİŞ YAPMADIYSA */
-              <>
-                <button
-                  className="nav-link"
-                  onClick={() => simulatePageLoad("/auth?mode=login")}
-                >
-                  Login
-                </button>
-                <button
-                  className="nav-link"
-                  onClick={() => simulatePageLoad("/auth?mode=register")}
-                >
-                  Register
-                </button>
-              </>
-            )}
+      {/* Order Icon with Label */}
+      {user && (
+        <Link to="/orders" className="nav-link">
+          <div className="icon-with-label">
+            <i className="bi bi-cart-check"></i>
+            <span className="icon-label"> Order</span>
           </div>
+        </Link>
+      )}
+
+      {/* Eğer admin ise admin panel linki */}
+      {user.role === "admin" && (
+        <Link to="/admin" className="nav-link">
+          <i className="bi bi-tools"></i> Admin
+        </Link>
+      )}
+
+      {/* My Cart linki with Label */}
+      <button
+        className="nav-link cart-button"
+        onClick={() => simulatePageLoad("/cart")}
+      >
+        <div className="icon-with-label">
+          <i className="bi bi-cart-fill"></i>
+          <span className="icon-label"> Cart</span>
+        </div>
+        <span className="cart-count">({cartItems.length})</span>
+      </button>
+
+      {/* Logout Icon */}
+      <button onClick={showLogoutModal} className="logout-btn">
+        <i className="bi bi-box-arrow-right"></i>
+      </button>
+    </>
+  ) : (
+    /* Kullanıcı GİRİŞ YAPMADIYSA */
+    <>
+      <button
+        className="nav-link"
+        onClick={() => simulatePageLoad("/auth?mode=login")}
+      >
+        Login
+      </button>
+      <button
+        className="nav-link"
+        onClick={() => simulatePageLoad("/auth?mode=register")}
+      >
+        Register
+      </button>
+    </>
+  )}
+</div>
+
         </nav>
 
         {/* Hero Section */}

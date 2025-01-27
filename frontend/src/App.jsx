@@ -19,6 +19,7 @@ import Success from "./pages/Success";
 import OrderPage from "./pages/Admin/OrderPage";
 import DashboardPage from "./pages/Admin/DashboardPage";
 import NotificationPrompt from "./components/NotificationPrompt/NotificationPrompt";
+import MusteriSepet from "./pages/MüsteriSepet";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
       <Route path="/" element={<HomePage />}/>
       <Route path="/cart" element={<CartPage />} />
       <Route path="/auth" element={<AuthPage />} />
+      <Route path="/orders" element={<MusteriSepet />} />
       <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">

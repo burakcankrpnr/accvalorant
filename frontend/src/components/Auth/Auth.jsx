@@ -31,7 +31,6 @@ const Auth = () => {
     phone: "",
     country: "",
     password: "",
-    confirmPassword: "",
   });
   const [defaultCountry, setDefaultCountry] = useState("us");
   const [countries, setCountries] = useState([]);
@@ -277,20 +276,7 @@ const Auth = () => {
                 required
               />
             </div>
-            <div className="form-group">
-                  <label>
-                    Confirm Password <span className="required">*</span>
-                  </label>
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    placeholder="Confirm your password"
-                    value={formData.confirmPassword}
-                    className="animated-input"
-                    onChange={handleInputChange}
-                    required
-                  />
-                </div>
+            
             {isLogin && (
               <div className="form-options">
                 <label className="remember-me">

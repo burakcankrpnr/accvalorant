@@ -1,13 +1,14 @@
 import { Button, Result } from "antd";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CartContext } from "../context/CartProvider";
 
 const Success = () => {
   const { setCartItems } = useContext(CartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setCartItems([]);
+    setCartItems([]); // Sepeti temizle
   }, [setCartItems]);
 
   return (
@@ -15,15 +16,18 @@ const Success = () => {
       <div className="container">
         <Result
           status="success"
-          title="Ödeme Başarılı!"
-          subTitle="Siparişiniz başarıyla tamamlandı"
+          title="Payment Successful!"
+          subTitle="Your order has been completed successfully."
           extra={[
-            <Link to={"/"} key="home">
-              <Button type="primary">Ana Sayfa</Button>
+            <Link to="/" key="home">
+              <Button type="primary">Home</Button>
             </Link>,
-            <a href="/admin/orders" key={"order"}>
-              <Button key="buy">Siparişlerim</Button>
-            </a>
+            <Button
+              key="orders"
+              onClick={() => navigate("/orders")}
+            >
+              My Orders
+            </Button>
           ]}
         />
       </div>

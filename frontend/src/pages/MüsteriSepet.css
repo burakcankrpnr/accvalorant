@@ -1,0 +1,118 @@
+/* Genel Sayfa Stilleri */
+.valorant-theme {
+  background-color: #0f172a;
+  color: #000000;
+  font-family: 'Roboto', sans-serif;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  color: #38bdf8;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Tablo Stilleri */
+.order-table {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.valorant-table .ant-table-thead > tr > th {
+  background-color: #334155;
+  color: #e2e8f0;
+  text-align: center;
+  font-weight: bold;
+  border: none;
+}
+
+.valorant-table .ant-table-tbody > tr > td {
+  color: #000000;
+  text-align: center;
+  border: none;
+}
+
+.order-column-id {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.status-paid {
+  color: #22c55e;
+  font-weight: bold;
+}
+
+.status-unpaid {
+  color: #ef4444;
+  font-weight: bold;
+}
+
+/* Spinner Stili */
+.spinner-container .ant-spin-dot {
+  font-size: 2rem;
+  color: #38bdf8;
+}
+
+/* Modal Stilleri */
+.order-modal {
+  background-color: #1e293b;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.valorant-modal-title {
+  color: #38bdf8;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.order-modal-content {
+  color: #000000;
+}
+
+.order-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.order-item {
+  background-color: #334155;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 8px;
+  color: #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Stilleri */
+.ant-btn-primary {
+  background-color: #38bdf8;
+  border: none;
+  color: #ffffff;
+  font-weight: bold;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.ant-btn-primary:hover {
+  background-color: #0ea5e9;
+  color: #ffffff;
+}
+
+.ant-btn-primary:focus {
+  background-color: #0ea5e9;
+  color: #ffffff;
+}
+
+/* Boş Liste Mesajı */
+.ant-empty-description {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
