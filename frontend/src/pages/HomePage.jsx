@@ -9,7 +9,6 @@ const HomePage = () => {
   return (
     
     <React.Fragment>
-      <NotificationPrompt />  
       <Header />
       <Products />
       <FAQ />
