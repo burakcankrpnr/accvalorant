@@ -54,10 +54,10 @@ pipeline {
 
 def buildCompose() {
     sh "cd frontend/"
-    sh "docker-compose --file=backend/docker-compose.yml build"
+    sh "docker-compose --file=frontend/docker-compose.yml build"
 }
 
 def runCompose() {
     sh "cd frontend/"
-    sh "docker-compose --file=backend/docker-compose.yml up -d --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes"
+    sh "docker-compose --file=frontend/docker-compose.yml up -d --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes"
 }
