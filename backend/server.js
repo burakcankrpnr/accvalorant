@@ -1,31 +1,40 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const app = express();
 const cors = require("cors");
 const logger = require("morgan");
+
 const mainRoute = require("./routes/index.js");
-const port = 5000;
 
 dotenv.config();
 
-const connect = async () => {
+const app = express();
+const PORT = process.env.PORT || 5000;
+
+// ✅ MongoDB Bağlantısı
+const connectDB = async () => {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("Connected to mongoDb");
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("✅ Connected to MongoDB");
   } catch (error) {
-    throw error;
+    console.error("❌ MongoDB Connection Error:", error);
+    process.exit(1);
   }
 };
 
-// middlewares
+// ✅ Middleware'ler
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: "*" })); // 🔹 Tüm domainlerden gelen istekleri kabul eder.
 
+// ✅ API Route'ları
 app.use("/api", mainRoute);
 
-app.listen(port, () => {
-  connect();
-  console.log(`Sunucu ${port} portunda çalışıyor.`);
+// ✅ Sunucu Dinleme
+app.listen(PORT, "0.0.0.0", async () => {
+  await connectDB(); // 🔹 Sunucu başladığında MongoDB'ye bağlanır.
+  console.log(`🚀 Server running on http://0.0.0.0:${PORT}`);
 });
