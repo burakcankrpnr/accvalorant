@@ -53,9 +53,11 @@ pipeline {
 }
 
 def buildCompose() {
+    sh "cd backend/"
     sh "docker-compose build"
 }
 
 def runCompose() {
+    sh "cd backend/"
     sh "docker-compose up -d --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes"
 }
