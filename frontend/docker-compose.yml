@@ -1,6 +1,6 @@
 services:
   backend:
-    image: accvalo/backend
+    image: accvalo/frontend
     build:
       context: .
       no_cache: true
