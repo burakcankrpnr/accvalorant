@@ -1,7 +1,7 @@
 FROM node:20-alpine
 USER 0
 EXPOSE 5173
-ENV PORT 5173
+ENV VITE_PORT = 5173
 
 RUN npm config set loglevel verbose --global && npm set strict-ssl false --global
 RUN apk add build-base cairo-dev pango-dev jpeg-dev giflib-dev librsvg-dev
