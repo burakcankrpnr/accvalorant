@@ -1,12 +1,12 @@
 services:
-  backend:
-    image: accvalo/backend
+  frontend:
+    image: accvalo/frontend
     build:
       context: .
       no_cache: true
       dockerfile: Dockerfile
-    container_name: api.accvalo.shop
-    hostname: api.accvalo.shop
+    container_name: www.accvalo.shop
+    hostname: www.accvalo.shop
     restart: always
     ports:
-      - "5000:5000"
+      - "5001:3000"
