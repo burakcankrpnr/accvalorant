@@ -1,6 +1,6 @@
 services:
   backend:
-    image: accvalorant/backend
+    image: accvalo/backend
     build:
       context: .
       no_cache: true
