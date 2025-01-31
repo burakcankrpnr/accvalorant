@@ -53,11 +53,11 @@ pipeline {
 }
 
 def buildCompose() {
-    sh "cd backend/"
-    sh "docker-compose --file=backend/docker-compose.yml build"
+    sh "cd frontend/"
+    sh "docker-compose --file=frontend/docker-compose.yml build --no-cache"
 }
 
 def runCompose() {
-    sh "cd backend/"
-    sh "docker-compose --file=backend/docker-compose.yml up -d --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes"
+    sh "cd frontend/"
+    sh "docker-compose --file=frontend/docker-compose.yml up -d --force-recreate --remove-orphans --always-recreate-deps --renew-anon-volumes"
 }
