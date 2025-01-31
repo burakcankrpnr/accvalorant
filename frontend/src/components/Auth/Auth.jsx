@@ -157,7 +157,7 @@ const Auth = () => {
           <h2>{isLogin ? "Login" : "Register"}</h2>
           <p className="auth-description">
             {isLogin
-              ? "Please enter your email and password to Login to your account."
+              ? "Please enter your e-mail and password to Login to your account."
               : "Fill in the form below to create a new AccValo.Shop account."}
           </p>
 
