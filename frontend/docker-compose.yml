@@ -9,4 +9,4 @@ services:
     hostname: www.accvalo.shop
     restart: always
     ports:
-      - "5001:3000"
+      - "5001:5173"
