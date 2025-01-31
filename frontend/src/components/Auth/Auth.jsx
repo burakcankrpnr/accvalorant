@@ -111,11 +111,6 @@ const Auth = () => {
     e.preventDefault();
     const endpoint = isLogin ? "login" : "register";
 
-    if (!isLogin && formData.password !== formData.confirmPassword) {
-      message.error("Passwords do not match.");
-      return;
-    }
-
     try {
       const response = await fetch(`${apiUrl}/api/auth/${endpoint}`, {
         method: "POST",
