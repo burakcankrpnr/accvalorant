@@ -19,12 +19,12 @@ const valorantCharacters = [
   "https://i.imgur.com/08cKK0A.png",
   "https://i.imgur.com/8bAEd4o.png",
   "https://i.imgur.com/zTnE1EO.png",
-
 ];
 
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
+    username: "",
     firstName: "",
     lastName: "",
     email: "",
@@ -85,7 +85,7 @@ const Auth = () => {
   useEffect(() => {
     const fetchCountry = async () => {
       try {
-        const response = await fetch("https://ipapi.co/json/"); // IP tabanlı lokasyon API
+        const response = await fetch("https://ipapi.co/json/"); // IP-based location API
         const data = await response.json();
         setDefaultCountry(data.country_code.toLowerCase());
       } catch (error) {
@@ -95,8 +95,6 @@ const Auth = () => {
 
     fetchCountry();
   }, []);
-
- 
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -157,14 +155,14 @@ const Auth = () => {
           <h2>{isLogin ? "Login" : "Register"}</h2>
           <p className="auth-description">
             {isLogin
-              ? "Please enter your e-mail and password to Login to your account."
+              ? "Please enter your e-mail and password to login to your account."
               : "Fill in the form below to create a new AccValo.Shop account."}
           </p>
 
           <form onSubmit={handleSubmit}>
             {!isLogin && (
               <>
-              <div className="form-group">
+                <div className="form-group">
                   <label>
                     Username <span className="required"></span>
                   </label>
@@ -177,7 +175,7 @@ const Auth = () => {
                     onChange={handleInputChange}
                     required
                   />
-              </div>
+                </div>
                 <div className="form-group">
                   <label>
                     First Name <span className="required"></span>
@@ -215,7 +213,7 @@ const Auth = () => {
                     value={formData.phone}
                     onChange={handlePhoneChange}
                     enableSearch={true}
-                    placeholder="Phone Number"  
+                    placeholder="Phone Number"
                   />
                 </div>
                 <div className="form-group">
@@ -237,8 +235,6 @@ const Auth = () => {
                     ))}
                   </select>
                 </div>
-                
-               
               </>
             )}
 
@@ -271,7 +267,24 @@ const Auth = () => {
                 required
               />
             </div>
-            
+
+            {/* Checkbox for agreeing with policies (only for registration) */}
+            {!isLogin && (
+              <div className="animated-input">
+                <input type="checkbox" id="agreeTerms" required />
+                <label htmlFor="agreeTerms">
+                &nbsp;I agree with{" "}  
+                  <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">
+                    Privacy Policy
+                  </a>{" "}
+                  and{" "}
+                  <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer">
+                    Terms-Conditions
+                  </a>
+                </label>
+              </div>
+            )}
+
             {isLogin && (
               <div className="form-options">
                 <label className="remember-me">
@@ -283,7 +296,6 @@ const Auth = () => {
 
             <button className="btn-submit">{isLogin ? "Login" : "Register"}</button>
           </form>
-
           {/* Toggle Button */}
           <div className="toggle-auth">
             {isLogin ? (

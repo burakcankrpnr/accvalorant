@@ -1,42 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button, Typography } from "antd";
-import "./NotificationPrompt.css"; // Add your custom styles here
+import { Modal, Button, Typography, message } from "antd";
+import "./NotificationPrompt.css"; // Don't forget your CSS file
 
 const { Title, Text } = Typography;
 
-const NotificationModal = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const NotificationPrompt = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
 
   useEffect(() => {
-    const lastShown = localStorage.getItem("notificationLastShown");
-    const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
-
-    if (lastShown !== today) {
-      setIsModalOpen(true); // Show the modal if it hasn't been shown today
+    const hasSeenCoupon = localStorage.getItem("hasSeenCoupon");
+    if (!hasSeenCoupon) {
+      setIsModalOpen(true);
     }
   }, []);
 
-  const handleAllowNotifications = async () => {
-    if ("Notification" in window) {
-      const permission = await Notification.requestPermission();
-      if (permission === "granted") {
-        new Notification("Welcome to Valorant!", {
-          body: "You will now receive the latest updates and notifications!",
-          icon: "https://cdn.oneesports.gg/cdn-data/2023/01/Valorant_Lotus_Episode6ActI_Map-1024x576.jpg",
-        });
-      }
-    }
-    closeModal();
-  };
-
-  const handleDenyNotifications = () => {
-    closeModal();
-  };
-
   const closeModal = () => {
-    const today = new Date().toISOString().split("T")[0];
-    localStorage.setItem("notificationLastShown", today); // Store today's date
+    localStorage.setItem("hasSeenCoupon", "true");
     setIsModalOpen(false);
+  };
+
+  const copyCouponCode = () => {
+    navigator.clipboard.writeText("WELCOME10");
+    message.success("Coupon code copied successfully!");
   };
 
   return (
@@ -46,31 +31,31 @@ const NotificationModal = () => {
       footer={null}
       closable={false}
       className="notification-modal"
-      onCancel={closeModal} // Close modal when clicking outside
+      onCancel={closeModal}
     >
-      <div className="modal-content">
+      <div className="notification-modal-content">
         <img
-          src="https://cdn.oneesports.gg/cdn-data/2023/01/Valorant_Lotus_Episode6ActI_Map-1024x576.jpg"
-          alt="Valorant"
-          className="modal-image"
+          src="annocument.jpg"
+          alt="Valorant Discount Offer"
+          className="notification-modal-image"
         />
-        <Title level={3} style={{ textAlign: "center", color: "#ff4655" }}>
-          Enable Notifications for AccValorant.Shop !
-        </Title>
-        <Text style={{ textAlign: "center", display: "block", marginBottom: 20 }}>
-          Stay ahead with the latest updates, event reminders, and exclusive offers.
-        </Text>
-        <div className="modal-buttons">
-          <Button type="primary" onClick={handleAllowNotifications}>
-            Enable Notifications
-          </Button>
-          <Button onClick={handleDenyNotifications} style={{ marginLeft: 10 }}>
-            No Thanks
-          </Button>
-        </div>
+        <Button 
+          className="notification-modal-button" 
+          onClick={copyCouponCode}
+          style={{ background: "linear-gradient(135deg, #ff4655 0%, #d83c4b 100%)", color: "white", fontWeight: "bold", fontSize: "16px", borderRadius: "8px", border: "none", padding: "12px", transition: "0.3s" }}
+        >
+          WELCOME10
+        </Button>
+        <Button 
+          className="notification-modal-close" 
+          onClick={closeModal}
+          style={{ background: "black", color: "white", fontWeight: "bold", fontSize: "14px", borderRadius: "8px", border: "1px solid #ff4655", padding: "10px", transition: "0.3s" }}
+        >
+          Close
+        </Button>
       </div>
     </Modal>
   );
 };
 
-export default NotificationModal;
+export default NotificationPrompt;

@@ -108,6 +108,7 @@
   font-size: 16px;
   cursor: pointer;
   transition: background 0.3s;
+  margin-top:20px;
 }
 
 .btn-submit:hover {
@@ -243,4 +244,21 @@
 
 .react-tel-input .country-list .search input::placeholder {
   color: #6c757d;
+}
+.form-group.terms {
+  display: flex;               /* Make container a flex row */
+  align-items: center;         /* Vertically center checkbox + label */
+  margin-bottom: 15px;         /* Consistent spacing with other groups */
+}
+
+.form-group.terms input[type="checkbox"] {
+  margin-right: 8px;           /* Space between checkbox and text */
+}
+
+.form-group.terms label {
+  /* Override any .form-group label { display: block } rule */
+  display: inline-block ; 
+  margin: 0;
+  font-size: 0.95rem;
+  color: #c5c5c5;              /* Ensure the text color is readable on dark bg */
 }

@@ -1,88 +1,90 @@
 .notification-modal {
-  background-color: #1c2533 !important; /* Modal background */
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.modal-content {
+.notification-modal .ant-modal-content {
+  background: rgba(0, 0, 2, 0.9) !important; /* Hafif şeffaf koyu arka plan */
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.8); /* Daha yumuşak bir gölge */
+  border-radius: 16px; /* Daha zarif kenarlar */
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.notification-modal .ant-modal-mask {
+  background: rgba(0, 0, 0, 0.6) !important; /* Hafif koyu arka plan */
+  backdrop-filter: blur(8px); /* Blur efekti ekle */
+  display: flex;
+  align-items: center;
   justify-content: center;
-  padding: 20px;
+}
+
+.notification-modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.notification-modal-image {
+  width: 100%;
+  max-width: 320px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.notification-modal-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ff4655; /* Valorant kırmızısı */
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.notification-modal-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ddd;
+  margin-bottom: 20px;
   text-align: center;
 }
 
-.modal-image {
-  max-width: 100%;
-  
-  height: auto;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-/* Typography */
-.ant-typography {
-  color: #fff;
-}
-
-.ant-typography h3 {
-  font-weight: 700;
-}
-
-.modal-buttons {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* Button Styles */
-.ant-btn2-primary {
-  background-color: #000000;
-  border-color: #ff4655;
-  color: #fff;
+.notification-modal-button {
+  width: 85%;
+  background: linear-gradient(135deg, #ff4655 0%, #d83c4b 100%);
+  color: white;
   font-weight: bold;
   font-size: 16px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
-.ant-btn2-primary:hover {
-  background-color: #ff677d;
-  border-color: #ff677d;
+.notification-modal-button:hover {
+  background: linear-gradient(135deg, #d83c4b 0%, #ff4655 100%);
+  transform: scale(1.05);
 }
 
-.ant-btn2 {
-  background-color: #2e3a47;
-  border-color: #2e3a47;
-  color: #fff;
-  font-weight: 500;
-  font-size: 16px;
-  padding: 8px 16px;
-  border-radius: 6px;
-  transition: all 0.3s ease;
+.notification-modal-close {
+  width: 85%;
+  background: black;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ff4655;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: 0.3s;
 }
 
-.ant-btn2:hover {
-  background-color: #49566b;
-  border-color: #49566b;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .modal-content {
-    padding: 15px;
-  }
-
-  .modal-image {
-    margin-bottom: 15px;
-  }
-
-  .ant-btn2-primary, .ant-btn2 {
-    font-size: 14px;
-    padding: 6px 12px;
-  }
+.notification-modal-close:hover {
+  background: #222;
 }
