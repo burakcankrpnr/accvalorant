@@ -166,7 +166,7 @@ const Auth = () => {
               <>
               <div className="form-group">
                   <label>
-                    Username <span className="required">*</span>
+                    Username <span className="required"></span>
                   </label>
                   <input
                     type="text"
@@ -180,7 +180,7 @@ const Auth = () => {
               </div>
                 <div className="form-group">
                   <label>
-                    First Name <span className="required">*</span>
+                    First Name <span className="required"></span>
                   </label>
                   <input
                     type="text"
@@ -194,7 +194,7 @@ const Auth = () => {
                 </div>
                 <div className="form-group">
                   <label>
-                    Last Name <span className="required">*</span>
+                    Last Name <span className="required"></span>
                   </label>
                   <input
                     type="text"
@@ -208,7 +208,7 @@ const Auth = () => {
                 </div>
                 <div className="form-group">
                   <label>
-                    Phone <span className="required">*</span>
+                    Phone <span className="required"></span>
                   </label>
                   <PhoneInput
                     country={defaultCountry}
@@ -220,7 +220,7 @@ const Auth = () => {
                 </div>
                 <div className="form-group">
                   <label>
-                    Country <span className="required">*</span>
+                    Country <span className="required"></span>
                   </label>
                   <select
                     name="country"
@@ -244,7 +244,7 @@ const Auth = () => {
 
             <div className="form-group">
               <label>
-                Email <span className="required">*</span>
+                Email <span className="required"></span>
               </label>
               <input
                 type="email"
@@ -259,7 +259,7 @@ const Auth = () => {
 
             <div className="form-group">
               <label>
-                Password <span className="required">*</span>
+                Password <span className="required"></span>
               </label>
               <input
                 type="password"
