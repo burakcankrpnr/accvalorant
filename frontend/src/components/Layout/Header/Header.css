@@ -229,17 +229,19 @@
 .cart-count {
   position: absolute;
   top: -5px;
-  right: -15px;
+  right: -8px;
   background: #fff;
   color: #ff4655;
   font-size: 10px;
   font-weight: bold;
   border-radius: 50%;
-  padding: 4px 8px;
-  min-width: 20px;
+  padding: 2px 5px;
+  min-width: 18px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 /* ===================== RESPONSIVE TASARIM ===================== */
 @media (max-width: 992px) {
   .hero-content {
@@ -331,8 +333,13 @@
   }
 
   .cart-count {
+    position: relative; /* Mobilde pozisyon sabitleniyor */
     font-size: 8px;
-    padding: 2px 6px;
+    padding: 2px 5px;
+    min-width: 16px;
+    right: auto;
+    top: auto;
+    margin-left: 5px; /* Butonla çakışmaması için küçük bir boşluk ekleniyor */
   }
 
   .nav-link {
@@ -538,4 +545,72 @@
 
 .nav-link2:hover {
   background-color: #555;
+}
+.user-greeing {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff4655;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.auth-links-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Gerektiğinde yatay kaydırma sağlar */
+  padding: 5px 0;
+}
+
+.valorant-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  overflow-x: auto; /* Taşan içerik olursa yatay kaydırma sağlanır */
+}
+
+/* Navbar sağ kısmı, içerik taşarsa yatay kaydırma */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap; /* İçerik satır atlamadan tek satırda kalır */
+}
+
+/* Giriş yapmamış kullanıcılar için auth linkleri */
+.auth-links-container {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto; /* Gerekirse kaydırma */
+  padding: 5px 0;
+}
+
+
+
+/* Mobilde ekstra stil düzenlemesi gerekirse */
+@media (max-width: 768px) {
+  .valorant-navbar,
+  .navbar-right {
+    overflow-x: auto;
+  }
+}
+
+.avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.modal-actions2 {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }

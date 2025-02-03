@@ -54,91 +54,101 @@ const Header = () => {
     handleLogout();
   };
 
+  // Kullanıcı adını kısaltma fonksiyonu (örneğin 10 karakterden uzun ise)
+  const shortenUsername = (username, maxLength = 10) => {
+    if (username.length > maxLength) {
+      return username.substring(0, maxLength) + '...';
+    }
+    return username;
+  };
+
   return (
     <>
       {isLoading && <Loading />}
       <header className="valorant-header" onMouseMove={handleMouseMove}>
         {/* Navbar */}
         <nav className="valorant-navbar">
-        <div className="navbar-left">
-        <Link to="/">
-      <img src="/sds-Photoroom.png" alt="AccValorant Logo" className="logo" />
-    </Link>
-</div>
-
-<div className="navbar-right">
-  {/* Kullanıcı GİRİŞ YAPMIŞSA */}
-  {user ? (
-    <>
-      <div className="user-info">
-        {user.characterImage && (
-          <img
-            src={user.characterImage}
-            alt="Valorant Character"
-            className="valorant-avatar"
-          />
-        )}
-        <span
-          className="user-greeting"
-          style={{ color: "#fff", marginLeft: "-3px" }}
-        >
-          Hello, {user.username}!
-        </span>
-      </div>
-
-      {/* Order Icon with Label */}
-      {user && (
-        <Link to="/orders" className="nav-link">
-          <div className="icon-with-label">
-            <i className="bi bi-cart-check"></i>
-            <span className="icon-label"> Order</span>
+          <div className="navbar-left">
+            <Link to="/">
+              <img src="/sds-Photoroom.png" alt="AccValorant Logo" className="logo" />
+            </Link>
           </div>
-        </Link>
-      )}
 
-      {/* Eğer admin ise admin panel linki */}
-      {user.role === "admin" && (
-        <Link to="/admin" className="nav-link">
-          <i className="bi bi-tools"></i> Admin
-        </Link>
-      )}
+          <div className="navbar-right">
+            {/* Kullanıcı giriş yapmışsa */}
+            {user ? (
+              <>
+                <div className="user-info">
+                  {/* Avatar: Eğer karakter resmi varsa onu, yoksa kullanıcı adının ilk harfini göster */}
+                  {user.characterImage ? (
+                    <img
+                      src={user.characterImage}
+                      alt="Valorant Character"
+                      className="valorant-avatar"
+                    />
+                  ) : (
+                    <div className="avatar-placeholder">
+                      {user.username.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <span
+                    className="user-greeting"
+                    style={{ color: "#fff", marginLeft: "5px" }}
+                  >
+                    Hello, {shortenUsername(user.username)}!
+                  </span>
+                </div>
 
-      {/* My Cart linki with Label */}
-      <button
-        className="nav-link cart-button"
-        onClick={() => simulatePageLoad("/cart")}
-      >
-        <div className="icon-with-label">
-          <i className="bi bi-cart-fill"></i>
-          <span className="icon-label"> Cart</span>
-        </div>
-        <span className="cart-count">({cartItems.length})</span>
-      </button>
+                {/* Order Icon with Label */}
+                <Link to="/orders" className="nav-link">
+                  <div className="icon-with-label">
+                    <i className="bi bi-cart-check"></i>
+                    <span className="icon-label"> Order</span>
+                  </div>
+                </Link>
 
-      {/* Logout Icon */}
-      <button onClick={showLogoutModal} className="logout-btn">
-        <i className="bi bi-box-arrow-right"></i>
-      </button>
-    </>
-  ) : (
-    /* Kullanıcı GİRİŞ YAPMADIYSA */
-    <>
-      <button
-        className="nav-link"
-        onClick={() => simulatePageLoad("/auth?mode=login")}
-      >
-        Login
-      </button>
-      <button
-        className="nav-link"
-        onClick={() => simulatePageLoad("/auth?mode=register")}
-      >
-        Register
-      </button>
-    </>
-  )}
-</div>
+                {/* Eğer admin ise admin panel linki */}
+                {user.role === "admin" && (
+                  <Link to="/admin" className="nav-link">
+                    <i className="bi bi-tools"></i> Admin
+                  </Link>
+                )}
 
+                {/* My Cart linki with Label */}
+                <button
+                  className="nav-link cart-button"
+                  onClick={() => simulatePageLoad("/cart")}
+                >
+                  <div className="icon-with-label">
+                    <i className="bi bi-cart-fill"></i>
+                    <span className="icon-label"> Cart</span>
+                  </div>
+                  <span className="cart-count">({cartItems.length})</span>
+                </button>
+
+                {/* Logout Icon */}
+                <button onClick={showLogoutModal} className="logout-btn">
+                  <i className="bi bi-box-arrow-right"></i>
+                </button>
+              </>
+            ) : (
+              /* Kullanıcı giriş yapmamışsa */
+              <div className="auth-links-container">
+                <button
+                  className="nav-link"
+                  onClick={() => simulatePageLoad("/auth?mode=login")}
+                >
+                  Login
+                </button>
+                <button
+                  className="nav-link"
+                  onClick={() => simulatePageLoad("/auth?mode=register")}
+                >
+                  Register
+                </button>
+              </div>
+            )}
+          </div>
         </nav>
 
         {/* Hero Section */}
@@ -152,29 +162,26 @@ const Header = () => {
               </p>
               {/* Eğer user varsa sepet linki "hero-btn" içinde gözükebilir */}
               <a
-  href={user ? "/cart" : "/auth?mode=register"} // Eğer kullanıcı varsa "/cart", yoksa "/register"
-  className="hero-btn"
->
-  Buy Now!
-</a>
-
+                href={user ? "/cart" : "/auth?mode=register"} // Eğer kullanıcı varsa "/cart", yoksa "/register"
+                className="hero-btn"
+              >
+                Buy Now!
+              </a>
             </div>
 
             {/* Hero Image: Mouse hareketiyle dinamik parallax */}
             <div
               className="hero-image"
               style={{
-                transform: `translate(${mousePosition.x * 15}px, ${
-                  mousePosition.y * 15
-                }px)`,
+                transform: `translate(${mousePosition.x * 15}px, ${mousePosition.y * 15}px)`,
                 transition: "transform 0.1s ease-out",
               }}
             >
-<img 
-  src="/character_valo2.png" 
-  alt="Valorant Character"  
-  className="hero-image2" 
-/>
+              <img 
+                src="/character_valo2.png" 
+                alt="Valorant Character"  
+                className="hero-image2" 
+              />
             </div>
           </div>
         </div>
@@ -185,7 +192,7 @@ const Header = () => {
             <div className="valorant-modal">
               <h2 className="modal-title">Confirm Logout</h2>
               <p className="modal-message">Are you sure you want to log out?</p>
-              <div className="modal-actions">
+              <div className="modal-actions2">
                 <button className="valorant-btn confirm-btn" onClick={confirmLogout}>
                   Yes, Log Out
                 </button>
