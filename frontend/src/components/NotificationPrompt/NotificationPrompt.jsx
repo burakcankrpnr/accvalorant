@@ -1,21 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Typography, message } from "antd";
-import "./NotificationPrompt.css"; // Don't forget your CSS file
-
-const { Title, Text } = Typography;
+import "./NotificationPrompt.css";
 
 const NotificationPrompt = () => {
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const hasSeenCoupon = localStorage.getItem("hasSeenCoupon");
-    if (!hasSeenCoupon) {
+    const lastSeenTimestamp = localStorage.getItem("lastCouponTimestamp");
+    const isNewUser = !localStorage.getItem("isReturningUser");
+    const currentTime = Date.now();
+
+    // Kullanıcının sayfa gezme sayısını al
+    let pageViews = parseInt(localStorage.getItem("pageViews") || "0", 10);
+
+    // Eğer kullanıcı yeni ise veya 12 saat geçtiyse göster
+    if (isNewUser || !lastSeenTimestamp || currentTime - lastSeenTimestamp >= 43200000) {
       setIsModalOpen(true);
+      localStorage.setItem("isReturningUser", "true");
     }
+
+    // Sayfa görüntüleme sayısını artır
+    pageViews++;
+    localStorage.setItem("pageViews", pageViews);
+
+    // Eğer kullanıcı 3 farklı sayfa gezdiyse kuponu aç
+    if (pageViews >= 5) {
+      setIsModalOpen(true);
+      localStorage.setItem("pageViews", "0"); // Sayaç sıfırlanır
+    }
+
+    // Kullanıcı 30 saniyeden fazla sitede kalırsa kuponu göster
+    const timeout = setTimeout(() => {
+      setIsModalOpen(true);
+    }, 30000); // 30 saniye = 30000 ms
+
+    return () => clearTimeout(timeout); // Sayfa değiştiğinde temizlenir
   }, []);
 
   const closeModal = () => {
-    localStorage.setItem("hasSeenCoupon", "true");
+    localStorage.setItem("lastCouponTimestamp", Date.now());
     setIsModalOpen(false);
   };
 

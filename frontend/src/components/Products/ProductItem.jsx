@@ -117,8 +117,8 @@ const ProductItem = ({ productItem }) => {
             />
 
             <div className="modal-actions">
+            <button onClick={(e) => handleAddToCart(e)}>Buy Now</button>
               <button onClick={closeModal}>Close</button>
-              <button onClick={(e) => handleAddToCart(e)}>Add to Cart</button>
             </div>
           </div>
         </div>
