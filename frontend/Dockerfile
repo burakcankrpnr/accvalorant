@@ -14,4 +14,4 @@ RUN npm run build --force
 RUN addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs
 
-CMD ["npm", "run", "dev", "--", "--port=5173", "--host=0.0.0.0"]
+# CMD ["npm", "run", "dev", "--", "--port=5173", "--host=0.0.0.0"]
