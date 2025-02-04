@@ -24,6 +24,8 @@ import Header from "./components/Layout/Header/Header";
 import Products from "./components/Products/Products";
 import Footer from "./components/Layout/Footer/Footer";  
 import TermsAndConditions from "./pages/Terms & Conditions/Terms & Conditions";
+import Agreements from "./pages/Agreements/Agreements";
+import CopyrightPolicy from "./pages/CopyrightPolicy/CopyrightPolicy";
 
 function App() {
   return (
@@ -48,6 +50,22 @@ function App() {
           </>}
       />
 
+<Route
+        path="/agreements"
+        element={
+          <>
+          <Agreements />
+            <Footer />
+          </>}
+      />
+      <Route
+        path="/copyright-policy"
+        element={
+          <>
+          <CopyrightPolicy/>
+            <Footer />
+          </>}
+      />
       <Route 
         path="/cart" 
         element={<CartPage />} />

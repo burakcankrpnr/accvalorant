@@ -71,6 +71,16 @@ const Footer = () => {
               Terms & Conditions
 </button>
               </li>
+              <li>
+              <button onClick={() => (window.location.href = "/agreements")}>
+              Agreements
+</button>
+              </li>
+              <li>
+              <button onClick={() => (window.location.href = "/copyright-policy")}>
+              Copyright Policy
+</button>
+              </li>
             </ul>
           </div>
           <div className="footer-contact-bottom">
