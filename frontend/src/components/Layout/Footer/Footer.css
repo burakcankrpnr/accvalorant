@@ -287,3 +287,12 @@
   color: #0056b3; /* Daha koyu mavi */
   text-decoration: underline; /* Hover durumunda alt çizgi ekle */
 }
+.payment-methods {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.payment-logo {
+  width: auto;
+}
