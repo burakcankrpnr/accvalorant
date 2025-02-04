@@ -44,7 +44,7 @@ const Footer = () => {
 
           </div>
           <div className="widget-nav-menu">
-            <h4>Quick Link</h4>
+            <h4>Quick Links</h4>
             <ul>
               <li>
                 <a href="/">Home</a>
