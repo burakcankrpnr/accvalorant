@@ -79,18 +79,10 @@ const Header = () => {
             {user ? (
               <>
                 <div className="user-info">
-                  {/* Avatar: Eğer karakter resmi varsa onu, yoksa kullanıcı adının ilk harfini göster */}
-                  {user.characterImage ? (
-                    <img
-                      src={user.characterImage}
-                      alt="Valorant Character"
-                      className="valorant-avatar"
-                    />
-                  ) : (
+                 
                     <div className="avatar-placeholder">
                       {user.username.charAt(0).toUpperCase()}
                     </div>
-                  )}
                   <span
                     className="user-greeting"
                     style={{ color: "#fff", marginLeft: "5px" }}

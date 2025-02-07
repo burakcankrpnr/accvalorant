@@ -21,6 +21,7 @@
   border: 1px solid #334155;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-x: auto;
 }
 
 .valorant-table .ant-table-thead > tr > th {
@@ -63,6 +64,7 @@
   background-color: #1e293b;
   border-radius: 10px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+  padding: 20px;
 }
 
 .valorant-modal-title {
@@ -100,12 +102,7 @@
   transition: all 0.3s;
 }
 
-.ant-btn-primary:hover {
-  background-color: #0ea5e9;
-  color: #ffffff;
-}
-
-.ant-btn-primary:focus {
+.ant-btn-primary:hover, .ant-btn-primary:focus {
   background-color: #0ea5e9;
   color: #ffffff;
 }
@@ -116,3 +113,41 @@
   font-size: 1.2rem;
   font-weight: 500;
 }
+
+/* Mobil Uyumluluk */
+@media (max-width: 768px) {
+  .valorant-theme {
+    padding: 10px;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .order-table {
+    overflow-x: auto;
+  }
+
+  .valorant-table {
+    font-size: 0.9rem;
+  }
+
+  .order-modal {
+    padding: 15px;
+  }
+
+  .valorant-modal-title {
+    font-size: 1.5rem;
+  }
+
+  .ant-btn-primary {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+  }
+
+  .order-item {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+

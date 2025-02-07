@@ -26,6 +26,9 @@ import Footer from "./components/Layout/Footer/Footer";
 import TermsAndConditions from "./pages/Terms & Conditions/Terms & Conditions";
 import Agreements from "./pages/Agreements/Agreements";
 import CopyrightPolicy from "./pages/CopyrightPolicy/CopyrightPolicy";
+import Header2 from "./components/Layout/NewHeader/NewHeader";
+import NewHeader from "./components/Layout/NewHeader/NewHeader";
+
 
 function App() {
   return (
@@ -45,6 +48,7 @@ function App() {
         path="/terms-conditions"
         element={
           <>
+          <NewHeader />
             <TermsAndConditions/>
             <Footer />
           </>}
@@ -54,14 +58,16 @@ function App() {
         path="/agreements"
         element={
           <>
+          <NewHeader />
           <Agreements />
-            <Footer />
+          <Footer />
           </>}
       />
       <Route
         path="/copyright-policy"
         element={
           <>
+          <NewHeader />
           <CopyrightPolicy/>
             <Footer />
           </>}
@@ -75,10 +81,16 @@ function App() {
       <Route 
         path="/privacy-policy" 
         element={<>
+        <NewHeader />
         <PrivatePolicy />
         <Footer />
         </>} />
-      <Route path="/orders" element={<MusteriSepet />} />
+        <Route 
+        path="/orders" 
+        element={<>
+        <MusteriSepet />
+        <Footer />
+        </>} />
       <Route path="/product/:id" element={<ProductDetailsPage />} />
       <Route path="/success" element={<Success />} />
       <Route path="/admin/*">

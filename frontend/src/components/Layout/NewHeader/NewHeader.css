@@ -1,0 +1,271 @@
+/****** Yeni Header (Riot) Temel Stil ******/
+.riot-header {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  .riot-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(20, 20, 20, 0.9);
+    position: fixed;
+    width: 100%;
+    margin-top: -20px !important;
+  }
+  
+  /****** Logo ******/
+  .riot-logo {
+    width: 300px; /* Masaüstünde logo boyutu */
+    height: auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .riot-logo:hover {
+    transform: scale(1.05);
+  }
+  
+  /****** Navbar Sağ Taraf (Login/Register vs.) ******/
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    overflow-x: auto; /* Taşma olursa yatay kaydırma */
+    white-space: nowrap;
+  }
+  
+  /****** Linklerin Temel Stili ******/
+  .riot-nav-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .riot-nav-link:hover {
+    background-color: #555;
+  }
+  
+  /****** Kullanıcı Bilgisi Alanı ******/
+  .riot-user-info {
+    display: flex;
+    align-items: center;
+    margin-left: 1.5rem;
+  }
+  
+  .riot-avatar-placeholder {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-right: 5px;
+  }
+  
+  .riot-user-greeting {
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  
+  /****** Sepet Butonu ******/
+  .riot-cart-button {
+    display: flex;
+    align-items: center;
+    background: #fa2234;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  
+  .riot-cart-button:hover {
+    background: #fc1a1a;
+  }
+  
+  .riot-cart-count {
+    position: absolute;
+    top: -5px;
+    right: -8px;
+    background: #fff;
+    color: #ff4655;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 50%;
+    padding: 2px 5px;
+    min-width: 18px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /****** Auth Links (Kullanıcı giriş yapmadıysa) ******/
+  .riot-auth-links-container {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 5px 0;
+  }
+  
+  /****** Çıkış Butonu ******/
+  .riot-logout-btn {
+    background: transparent;
+    border: 1px solid #ff4655;
+    color: #ff4655;
+    padding: 0.3rem 0.8rem;
+    margin-left: 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+  }
+  
+  .riot-logout-btn:hover {
+    background: #ff4655;
+    color: #fff;
+  }
+  
+  /****** Modal (Logout Onayı) ******/
+  .riot-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+  }
+  
+  .riot-modal {
+    background: #1f1f1f;
+    color: #fff;
+    border-radius: 12px;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ff4655;
+  }
+  
+  .riot-modal-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #ff4655;
+  }
+  
+  .riot-modal-message {
+    font-size: 1rem;
+    margin-bottom: 20px;
+    color: #ddd;
+  }
+  
+  .riot-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .riot-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .riot-confirm-btn {
+    background-color: #ff4655;
+    color: #fff;
+  }
+  
+  .riot-confirm-btn:hover {
+    background-color: #ff6575;
+  }
+  
+  .riot-cancel-btn {
+    background-color: #333;
+    color: #fff;
+  }
+  
+  .riot-cancel-btn:hover {
+    background-color: #555;
+  }
+  
+  /****** Responsive Düzenlemeler ******/
+  @media (max-width: 768px) {
+    .riot-navbar {
+      padding: 0.75rem 1rem;
+    }
+    .riot-nav-link {
+      padding: 8px 16px;
+      font-size: 14px;
+    }
+    .riot-cart-button {
+      padding: 6px 12px;
+      font-size: 14px;
+    }
+    .riot-avatar-placeholder {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .riot-navbar {
+      padding: 0.5rem;
+    }
+    .riot-logo {
+      width: 100px; /* Mobilde logo küçültülür */
+    }
+    .riot-nav-link {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+    .riot-cart-button {
+      padding: 4px 10px;
+      font-size: 12px;
+    }
+    .riot-cart-count {
+      font-size: 8px;
+      min-width: 16px;
+      top: auto;
+      right: auto;
+      margin-left: 5px; /* Mobilde butondan kaymaması için */
+    }
+    .riot-avatar-placeholder {
+      width: 24px;
+      height: 24px;
+      font-size: 0.8rem;
+    }
+    .riot-logout-btn {
+      padding: 0.2rem 0.5rem;
+      font-size: 10px;
+    }
+  }
+ 

@@ -17,17 +17,24 @@ const MusteriSepet = () => {
 
   const MY_STRIPE_SECRET_KEY = import.meta.env.VITE_API_STRIPE_SECRET_KEY;
 
+  const maskEmail = (email) => {
+    const [name, domain] = email.split("@");
+    return `${name.slice(0, 3)}***@${domain}`;
+  };
+
   const columns = [
     {
       title: "Order ID",
       dataIndex: "id",
       key: "id",
       className: "order-column-id",
+      render: (id) => `${id.slice(0, 6)}...${id.slice(-4)}`, // Kısaltma
     },
     {
       title: "Customer Email",
       dataIndex: "customer_email",
       key: "customer_email",
+      render: (email) => maskEmail(email), // E-posta maskeleme
     },
     {
       title: "Total Amount",
@@ -156,10 +163,11 @@ const MusteriSepet = () => {
         {selectedOrder && (
           <div className="order-modal-content">
             <p>
-              <strong>Order ID:</strong> {selectedOrder.id}
+              <strong>Order ID:</strong>{" "}
+              {selectedOrder.id.slice(0, 6)}...{selectedOrder.id.slice(-4)}
             </p>
             <p>
-              <strong>Customer Email:</strong> {selectedOrder.customer_email}
+              <strong>Customer Email:</strong> {maskEmail(selectedOrder.customer_email)}
             </p>
             <p>
               <strong>Total Amount:</strong>{" "}
