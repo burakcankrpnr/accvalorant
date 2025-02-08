@@ -554,13 +554,6 @@
   letter-spacing: 1px;
 }
 
-.auth-links-container {
-  display: flex;
-  gap: 10px;
-  overflow-x: auto; /* Gerektiğinde yatay kaydırma sağlar */
-  padding: 5px 0;
-}
-
 .valorant-navbar {
   display: flex;
   align-items: center;
@@ -578,16 +571,12 @@
   white-space: nowrap; /* İçerik satır atlamadan tek satırda kalır */
 }
 
-/* Giriş yapmamış kullanıcılar için auth linkleri */
 .auth-links-container {
   display: flex;
   gap: 10px;
   overflow-x: auto; /* Gerekirse kaydırma */
   padding: 5px 0;
 }
-
-
-
 /* Mobilde ekstra stil düzenlemesi gerekirse */
 @media (max-width: 768px) {
   .valorant-navbar,

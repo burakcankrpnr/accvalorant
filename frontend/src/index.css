@@ -191,3 +191,28 @@ html, body {
   color: #000000; /* siyaha döner */
   opacity: 1; /* Görünürlüğü artırır */
 }
+html {
+  scrollbar-width: thin;               /* İnce scrollbar */
+  scrollbar-color: #ff4655 #0f0f0f;      /* Thumb ve track renkleri */
+  
+}
+
+/* Webkit tarayıcıları (Chrome, Safari, Edge) için */
+::-webkit-scrollbar {
+  width: 12px;                         /* Scrollbar genişliği */
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0f; 
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ff4655;           /* Thumb rengi */
+  border-radius: 20px;                  /* Yuvarlatılmış kenarlar */
+  border: 3px solid #0f0f0f;           /* Thumb çevresinde track ile uyumlu boşluk */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #e03d4d;           /* Hover durumunda biraz daha koyu ton */
+}

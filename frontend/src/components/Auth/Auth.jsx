@@ -5,22 +5,6 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import "./Auth.css";
 
-const valorantCharacters = [
-  "https://i.imgur.com/NvtkNPU.png",
-  "https://i.imgur.com/ETMk87f.png",
-  "https://i.imgur.com/YrXplp1.png",
-  "https://i.imgur.com/MuSjhD6.png",
-  "https://i.imgur.com/MdNk3RR.png",  
-  "https://i.imgur.com/p6Dn3jY.png",
-  "https://i.imgur.com/zZwMI9z.png",
-  "https://i.imgur.com/En1W7Y1.png",
-  "https://i.imgur.com/MrMQjun.png",
-  "https://i.imgur.com/K59jXD9.png",
-  "https://i.imgur.com/08cKK0A.png",
-  "https://i.imgur.com/8bAEd4o.png",
-  "https://i.imgur.com/zTnE1EO.png",
-];
-
 const Auth = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
@@ -120,12 +104,7 @@ const Auth = () => {
 
       if (response.ok) {
         const data = await response.json();
-        if (!isLogin) {
-          const randomIndex = Math.floor(
-            Math.random() * valorantCharacters.length
-          );
-          data.characterImage = valorantCharacters[randomIndex];
-        }
+        // Artık kayıt işleminde rastgele karakter ataması yapılmıyor.
 
         localStorage.setItem("user", JSON.stringify(data));
         message.success(isLogin ? "Login successful." : "Registration successful.");
@@ -273,7 +252,7 @@ const Auth = () => {
               <div className="animated-input">
                 <input type="checkbox" id="agreeTerms" required />
                 <label htmlFor="agreeTerms">
-                &nbsp;I agree with{" "}  
+                  &nbsp;I agree with{" "}
                   <a href="/privacy-policy" target="_blank" rel="noopener noreferrer">
                     Privacy Policy
                   </a>{" "}

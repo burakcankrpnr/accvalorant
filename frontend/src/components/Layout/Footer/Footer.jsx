@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./Footer.css";
 import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
+// Twitter simgesini kaldırdık
+import { FaDiscord } from "react-icons/fa"; // Discord simgesini ekledik
 
 const Footer = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -111,11 +112,13 @@ const Footer = () => {
           <div className="footer-contact-bottom">
             <h4>Follow Us</h4>
             <div className="social-links">
-              <a href="#" className="social-icon">
-                <TwitterIcon />
-              </a>
-              <a href="#" className="social-icon">
+              {/* Discord simgesi eklendi */}
+              
+              <a href="https://www.instagram.com/accvalorant.shop/" className="social-icon">
                 <InstagramIcon />
+              </a>
+              <a href="https://discord.gg/yourdiscordlink" className="social-icon">
+                <FaDiscord size={24} />
               </a>
             </div>
           </div>
@@ -141,7 +144,6 @@ const Footer = () => {
                 alt="Visa"
                 className="payment-logo"
               />
-              
             </div>
           </div>
         </div>
