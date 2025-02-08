@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/CartProvider";
 import { message, Spin } from "antd";
-import { loadStripe } from "@stripe/stripe-js";
 import "./Cart.css";
 
 const Cart = () => {
@@ -12,7 +11,6 @@ const Cart = () => {
   const [cartTotal, setCartTotal] = useState(0); // Toplam fiyat
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
-  const stripePublicKey = import.meta.env.VITE_API_STRIPE_PUBLIC_KEY;
 
   const user = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
@@ -56,7 +54,7 @@ const Cart = () => {
     }
   };
 
-  // Ödeme işlemi
+  // Ödeme işlemi (Shopier entegrasyonu)
   const handlePayment = async () => {
     if (!user) {
       return message.info("You must be logged in to make a payment!");
@@ -65,11 +63,12 @@ const Cart = () => {
     const body = {
       products: cartItems,
       user: user,
+      // Kargo ücreti; ihtiyaç varsa ayarlanabilir
+      cargoFee: 0,
     };
 
     try {
       setIsLoading(true); // Yükleme başlat
-      const stripe = await loadStripe(stripePublicKey);
 
       const res = await fetch(`${apiUrl}/api/payment`, {
         method: "POST",
@@ -81,18 +80,29 @@ const Cart = () => {
         throw new Error("Payment process failed.");
       }
 
-      const session = await res.json();
+      const response = await res.json();
+      const { shopierUrl, shopierData } = response;
 
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
-
-      if (result.error) {
-        throw new Error(result.error.message);
+      if (!shopierData) {
+        console.error("Shopier data is missing in the response:", response);
+        return message.error("Ödeme işlemi sırasında beklenmeyen bir hata oluştu.");
       }
 
-      setCartItems([]); // Ödeme sonrası sepeti boşalt
-      message.success("Payment successful. Your cart has been cleared!");
+      // Dinamik olarak bir form oluşturup Shopier'e gönderme
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = shopierUrl;
+
+      Object.keys(shopierData).forEach((key) => {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = shopierData[key];
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+      form.submit();
     } catch (error) {
       console.error(error);
       message.error("An error occurred during the payment process.");
@@ -113,7 +123,8 @@ const Cart = () => {
     <section className="cart-page">
       {isLoading && (
         <div className="loading-overlay">
-          <Spin size="large" tip="Processing..."></Spin>
+          {/* Spin’i tam ekran veya container içerisine yerleştirerek tip uyarısını önleyebilirsiniz */}
+          <Spin size="large" />
         </div>
       )}
       <div className="cart-container">
@@ -132,13 +143,14 @@ const Cart = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {cartItems.map((item) => (
-                    <tr key={item._id} className="cart-item">
+                  {cartItems.map((item, index) => (
+                    <tr key={`${item._id}-${index}`} className="cart-item">
                       <td className="product-remove">
                         <button
                           className="remove-product"
                           onClick={() => removeFromCart(item._id)}
                           aria-label="Remove product"
+                          type="button"
                         >
                           <i className="bi bi-x"></i>
                         </button>

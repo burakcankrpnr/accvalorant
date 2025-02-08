@@ -6,40 +6,42 @@ const OrderPage = () => {
   const [loading, setLoading] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const MY_STRIPE_SECRET_KEY = import.meta.env.VITE_API_STRIPE_SECRET_KEY;
 
   const columns = [
     {
       title: "Sipariş ID",
-      dataIndex: "id",
+      dataIndex: "_id",
       key: "id",
     },
     {
       title: "Müşteri Email",
-      dataIndex: "customer_email",
+      dataIndex: "user",
       key: "customer_email",
+      render: (user) => (user && user.email ? user.email : "Email sağlanmamış"),
     },
-    
     {
       title: "Toplam Tutar",
-      dataIndex: "total_amount",
       key: "total_amount",
-      render: (amount, record) =>
-        `${(amount / 100).toFixed(2)} ${record.currency.toUpperCase()}`,
+      render: (text, record) => {
+        const total = record.products.reduce((sum, item) => {
+          const productPrice = item.product.price ? parseFloat(item.product.price) : 0;
+          return sum + productPrice * item.quantity;
+        }, 0);
+        return total.toFixed(2) + " $";
+      },
     },
     {
       title: "Durum",
-      dataIndex: "payment_status",
-      key: "payment_status",
+      dataIndex: "status",
+      key: "status",
       render: (status) => (
-        <span style={{ color: status === "paid" ? "green" : "red" }}>
+        <span style={{ color: status === "completed" ? "green" : "red" }}>
           {status}
         </span>
       ),
     },
     {
       title: "Aksiyonlar",
-      dataIndex: "actions",
       key: "actions",
       render: (_, record) => (
         <Button type="primary" onClick={() => handleRowClick(record)}>
@@ -52,47 +54,10 @@ const OrderPage = () => {
   const fetchOrders = async () => {
     setLoading(true);
     try {
-      // Checkout Sessions listesi çekiliyor
-      const response = await fetch(
-        `https://api.stripe.com/v1/checkout/sessions`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${MY_STRIPE_SECRET_KEY}`,
-          },
-        }
-      );
-
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/orders`);
       if (response.ok) {
-        const { data } = await response.json();
-        // Her Checkout Session için Line Items detaylarını çekiyoruz
-        const detailedData = await Promise.all(
-          data.map(async (session) => {
-            const lineItemsResponse = await fetch(
-              `https://api.stripe.com/v1/checkout/sessions/${session.id}/line_items`,
-              {
-                method: "GET",
-                headers: {
-                  Authorization: `Bearer ${MY_STRIPE_SECRET_KEY}`,
-                },
-              }
-            );
-            const lineItems = lineItemsResponse.ok
-              ? await lineItemsResponse.json()
-              : { data: [] };
-
-            return {
-              id: session.id,
-              customer_email: session.customer_email || "Email sağlanmamış",
-              total_amount: session.amount_total,
-              currency: session.currency,
-              payment_status: session.payment_status,
-              line_items: lineItems.data,
-            };
-          })
-        );
-
-        setDataSource(detailedData);
+        const result = await response.json();
+        setDataSource(result.orders);
       } else {
         message.error("Sipariş bilgileri alınamadı.");
       }
@@ -124,7 +89,7 @@ const OrderPage = () => {
         <Table
           dataSource={dataSource}
           columns={columns}
-          rowKey={(record) => record.id}
+          rowKey={(record, index) => `${record._id}-${index}`}
           loading={loading}
         />
       </Spin>
@@ -137,13 +102,29 @@ const OrderPage = () => {
       >
         {selectedOrder && (
           <div>
-            
+            <p>
+              <strong>Order ID:</strong> {selectedOrder._id}
+            </p>
+            <p>
+              <strong>Müşteri Email:</strong>{" "}
+              {selectedOrder.user && selectedOrder.user.email ? selectedOrder.user.email : "Email sağlanmamış"}
+            </p>
+            <p>
+              <strong>Durum:</strong> {selectedOrder.status}
+            </p>
+            <p>
+              <strong>Oluşturulma Tarihi:</strong>{" "}
+              {new Date(selectedOrder.createdAt).toLocaleString()}
+            </p>
+            <h4>Order Items:</h4>
             <ul>
-              {selectedOrder.line_items.map((item) => (
-                <li key={item.id}>
-                  {item.description} - {item.quantity} x{" "}
-                  <strong>{(item.price.unit_amount / 100).toFixed(2)}{" "}</strong>
-                  <strong>{item.price.currency.toUpperCase()}</strong>
+              {selectedOrder.products.map((item, index) => (
+                <li key={`${item._id}-${index}`}>
+                  {item.product.name} - {item.quantity} x{" "}
+                  <strong>
+                    {(item.product.price ? parseFloat(item.product.price).toFixed(2) : "0.00")}{" "}
+                  </strong>
+                  $
                 </li>
               ))}
             </ul>

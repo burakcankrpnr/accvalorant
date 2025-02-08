@@ -15,8 +15,6 @@ const MusteriSepet = () => {
     return null;
   }
 
-  const MY_STRIPE_SECRET_KEY = import.meta.env.VITE_API_STRIPE_SECRET_KEY;
-
   const maskEmail = (email) => {
     const [name, domain] = email.split("@");
     return `${name.slice(0, 3)}***@${domain}`;
@@ -25,37 +23,39 @@ const MusteriSepet = () => {
   const columns = [
     {
       title: "Order ID",
-      dataIndex: "id",
+      dataIndex: "_id",
       key: "id",
-      className: "order-column-id",
-      render: (id) => `${id.slice(0, 6)}...${id.slice(-4)}`, // Kısaltma
+      render: (id) => `${id.slice(0, 6)}...${id.slice(-4)}`,
     },
     {
       title: "Customer Email",
-      dataIndex: "customer_email",
+      dataIndex: "user",
       key: "customer_email",
-      render: (email) => maskEmail(email), // E-posta maskeleme
+      render: (user) => (user.email ? maskEmail(user.email) : "Email not provided"),
     },
     {
       title: "Total Amount",
-      dataIndex: "total_amount",
       key: "total_amount",
-      render: (amount, record) =>
-        `${(amount / 100).toFixed(2)} ${record.currency.toUpperCase()}`,
+      render: (text, record) => {
+        const total = record.products.reduce((sum, item) => {
+          const productPrice = item.product.price ? parseFloat(item.product.price) : 0;
+          return sum + productPrice * item.quantity;
+        }, 0);
+        return total.toFixed(2) + " $";
+      },
     },
     {
       title: "Status",
-      dataIndex: "payment_status",
-      key: "payment_status",
+      dataIndex: "status",
+      key: "status",
       render: (status) => (
-        <span className={status === "paid" ? "status-paid" : "status-unpaid"}>
+        <span className={status === "completed" ? "status-paid" : "status-unpaid"}>
           {status}
         </span>
       ),
     },
     {
       title: "Actions",
-      dataIndex: "actions",
       key: "actions",
       render: (_, record) => (
         <Button type="primary" onClick={() => handleRowClick(record)}>
@@ -69,49 +69,15 @@ const MusteriSepet = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        `https://api.stripe.com/v1/checkout/sessions`,
-        {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${MY_STRIPE_SECRET_KEY}`,
-          },
-        }
+        `${import.meta.env.VITE_API_BASE_URL}/api/orders`
       );
-
       if (response.ok) {
-        const { data } = await response.json();
-
-        const userOrders = data.filter(
-          (session) => session.customer_email === loggedInUser.email
+        const result = await response.json();
+        // Sadece giriş yapan kullanıcının siparişlerini filtreleme
+        const userOrders = result.orders.filter(
+          (order) => order.user && order.user.email === loggedInUser.email
         );
-
-        const detailedData = await Promise.all(
-          userOrders.map(async (session) => {
-            const lineItemsResponse = await fetch(
-              `https://api.stripe.com/v1/checkout/sessions/${session.id}/line_items`,
-              {
-                method: "GET",
-                headers: {
-                  Authorization: `Bearer ${MY_STRIPE_SECRET_KEY}`,
-                },
-              }
-            );
-            const lineItems = lineItemsResponse.ok
-              ? await lineItemsResponse.json()
-              : { data: [] };
-
-            return {
-              id: session.id,
-              customer_email: session.customer_email || "Email not provided",
-              total_amount: session.amount_total,
-              currency: session.currency,
-              payment_status: session.payment_status,
-              line_items: lineItems.data,
-            };
-          })
-        );
-
-        setDataSource(detailedData);
+        setDataSource(userOrders);
       } else {
         message.error("Failed to fetch order details.");
       }
@@ -144,7 +110,7 @@ const MusteriSepet = () => {
         <Table
           dataSource={dataSource}
           columns={columns}
-          rowKey={(record) => record.id}
+          rowKey={(record, index) => `${record._id}-${index}`}
           loading={loading}
           className="order-table valorant-table"
           locale={{
@@ -164,26 +130,23 @@ const MusteriSepet = () => {
           <div className="order-modal-content">
             <p>
               <strong>Order ID:</strong>{" "}
-              {selectedOrder.id.slice(0, 6)}...{selectedOrder.id.slice(-4)}
+              {selectedOrder._id.slice(0, 6)}...{selectedOrder._id.slice(-4)}
             </p>
             <p>
-              <strong>Customer Email:</strong> {maskEmail(selectedOrder.customer_email)}
+              <strong>Customer Email:</strong> {maskEmail(selectedOrder.user.email)}
             </p>
             <p>
-              <strong>Total Amount:</strong>{" "}
-              {(selectedOrder.total_amount / 100).toFixed(2)}{" "}
-              {selectedOrder.currency.toUpperCase()}
+              <strong>Status:</strong> {selectedOrder.status}
             </p>
             <p>
-              <strong>Status:</strong> {selectedOrder.payment_status}
+              <strong>Created At:</strong> {new Date(selectedOrder.createdAt).toLocaleString()}
             </p>
             <h4>Order Items:</h4>
             <ul className="order-items">
-              {selectedOrder.line_items.map((item) => (
-                <li key={item.id} className="order-item">
-                  {item.description} - {item.quantity} x{" "}
-                  {(item.price.unit_amount / 100).toFixed(2)}{" "}
-                  {item.price.currency.toUpperCase()}
+              {selectedOrder.products.map((item, index) => (
+                <li key={`${item._id}-${index}`} className="order-item">
+                  {item.product.name} - {item.quantity} x{" "}
+                  {(item.product.price ? parseFloat(item.product.price).toFixed(2) : "0.00")} $
                 </li>
               ))}
             </ul>

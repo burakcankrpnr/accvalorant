@@ -11,11 +11,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@api/shopier": "file:.api/apis/shopier",
     "@stripe/stripe-js": "^5.2.0",
     "antd": "^5.22.3",
     "bcryptjs": "^2.4.3",
     "classnames": "^2.5.1",
     "cors": "^2.8.5",
+    "crypto": "^1.0.1",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.8.4",
