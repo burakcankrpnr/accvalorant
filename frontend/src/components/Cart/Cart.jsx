@@ -6,9 +6,13 @@ import "./Cart.css";
 const Cart = () => {
   const { cartItems, setCartItems, removeFromCart } = useContext(CartContext);
   const [couponCode, setCouponCode] = useState("");
-  const [isCouponApplied, setIsCouponApplied] = useState(false); // Kupon kontrolü
-  const [isLoading, setIsLoading] = useState(false); // Yükleme durumu
-  const [cartTotal, setCartTotal] = useState(0); // Toplam fiyat
+  // localStorage üzerinden kupon uygulanıp uygulanmadığını kontrol ediyoruz.
+  const [isCouponApplied, setIsCouponApplied] = useState(() => {
+    const applied = localStorage.getItem("couponApplied");
+    return applied ? JSON.parse(applied) : false;
+  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [cartTotal, setCartTotal] = useState(0);
 
   const apiUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -16,10 +20,11 @@ const Cart = () => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
-  // Kupon uygulama
+  // Kupon uygulama fonksiyonu
   const applyCoupon = async () => {
+    // Eğer kupon kodu zaten uygulanmışsa, warning mesajı gösteriyoruz.
     if (isCouponApplied) {
-      return message.error("You have already applied a coupon code!");
+      return message.warning("A coupon code has already been applied!");
     }
 
     if (couponCode.trim().length === 0) {
@@ -46,7 +51,9 @@ const Cart = () => {
       });
 
       setCartItems(updatedCartItems);
-      setIsCouponApplied(true); // Kuponun uygulandığını işaretle
+      setIsCouponApplied(true);
+      // Kuponun uygulandığını localStorage'a kaydediyoruz
+      localStorage.setItem("couponApplied", JSON.stringify(true));
       message.success(`${couponCode} coupon code applied successfully.`);
     } catch (error) {
       console.error(error);
@@ -63,13 +70,11 @@ const Cart = () => {
     const body = {
       products: cartItems,
       user: user,
-      // Kargo ücreti; ihtiyaç varsa ayarlanabilir
       cargoFee: 0,
     };
 
     try {
-      setIsLoading(true); // Yükleme başlat
-
+      setIsLoading(true);
       const res = await fetch(`${apiUrl}/api/payment`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -85,10 +90,10 @@ const Cart = () => {
 
       if (!shopierData) {
         console.error("Shopier data is missing in the response:", response);
-        return message.error("Ödeme işlemi sırasında beklenmeyen bir hata oluştu.");
+        return message.error("An unexpected error occurred during the payment process.");
       }
 
-      // Dinamik olarak bir form oluşturup Shopier'e gönderme
+      // Shopier'e dinamik form gönderimi
       const form = document.createElement("form");
       form.method = "POST";
       form.action = shopierUrl;
@@ -107,7 +112,7 @@ const Cart = () => {
       console.error(error);
       message.error("An error occurred during the payment process.");
     } finally {
-      setIsLoading(false); // Yükleme bitir
+      setIsLoading(false);
     }
   };
 
@@ -123,7 +128,6 @@ const Cart = () => {
     <section className="cart-page">
       {isLoading && (
         <div className="loading-overlay">
-          {/* Spin’i tam ekran veya container içerisine yerleştirerek tip uyarısını önleyebilirsiniz */}
           <Spin size="large" />
         </div>
       )}
@@ -207,8 +211,14 @@ const Cart = () => {
                     placeholder="Enter Coupon Code"
                     onChange={(e) => setCouponCode(e.target.value)}
                     value={couponCode}
+                    disabled={isCouponApplied}
                   />
-                  <button className="btn" type="button" onClick={applyCoupon}>
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={applyCoupon}
+                    disabled={isCouponApplied}
+                  >
                     Apply Coupon
                   </button>
                 </div>
@@ -242,7 +252,7 @@ const Cart = () => {
           <div className="empty-cart">
             <i className="bi bi-cart-x"></i>
             <h2>Your cart is empty!</h2>
-            <p>Start shopping now and discover unique Valorant products.</p>
+            <p>Start shopping now and discover unique products.</p>
             <a href="/" className="btn">
               Start Shopping
             </a>
