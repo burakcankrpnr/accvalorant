@@ -5,7 +5,7 @@ const faqData = [
   {
     question: "What We Do ?",
     answer:
-      "AccValo.Shop offer a wide range of digital goods, focusing on game accounts. Our platform ensures a quick, hassle-free purchase with exceptional customer support. AccVictory is a secure online platform where users can buy game accounts and digital goods.",
+      "AccValo.Shop offer a wide range of digital goods, focusing on game accounts. Our platform ensures a quick, hassle-free purchase with exceptional customer support. AccValo.Shop is a secure online platform where users can buy game accounts and digital goods.",
   },
   {
     question: "Are The Products Original ?",
