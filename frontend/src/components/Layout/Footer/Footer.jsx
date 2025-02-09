@@ -117,7 +117,7 @@ const Footer = () => {
               <a href="https://www.instagram.com/accvalorant.shop/" className="social-icon">
                 <InstagramIcon />
               </a>
-              <a href="https://discord.gg/yourdiscordlink" className="social-icon">
+              <a href="https://discord.gg/aKydKfy4Hn" className="social-icon">
                 <FaDiscord size={24} />
               </a>
             </div>
